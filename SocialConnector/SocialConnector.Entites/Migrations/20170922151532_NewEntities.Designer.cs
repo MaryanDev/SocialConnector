@@ -11,9 +11,10 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    partial class SocialConnectorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170922151532_NewEntities")]
+    partial class NewEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +39,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasIndex("ReligionId");
 
-                    b.ToTable("UserInfo");
+                    b.ToTable("AdditinalUserInfo");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Category", b =>
@@ -50,19 +51,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Path");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Interest", b =>
@@ -82,29 +71,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Interests");
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("FromId");
-
-                    b.Property<DateTime>("SendDate");
-
-                    b.Property<string>("Text");
-
-                    b.Property<int>("ToId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FromId");
-
-                    b.HasIndex("ToId");
-
-                    b.ToTable("Messages");
+                    b.ToTable("Interest");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Nationality", b =>
@@ -116,7 +83,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Nationalities");
+                    b.ToTable("Nationality");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Relationship", b =>
@@ -152,7 +119,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Religions");
+                    b.ToTable("Religion");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Role", b =>
@@ -195,19 +162,6 @@ namespace SocialConnector.Entites.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.UserImage", b =>
-                {
-                    b.Property<int>("ImageId");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("ImageId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserImages");
-                });
-
             modelBuilder.Entity("SocialConnector.Entites.Entities.AdditinalUserInfo", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Nationality", "Nationality")
@@ -239,19 +193,6 @@ namespace SocialConnector.Entites.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.Message", b =>
-                {
-                    b.HasOne("SocialConnector.Entites.Entities.User", "FromUser")
-                        .WithMany()
-                        .HasForeignKey("FromId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SocialConnector.Entites.Entities.User", "ToUser")
-                        .WithMany()
-                        .HasForeignKey("ToId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("SocialConnector.Entites.Entities.Relationship", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Friend")
@@ -270,19 +211,6 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.UserImage", b =>
-                {
-                    b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
-                        .WithOne("UserImage")
-                        .HasForeignKey("SocialConnector.Entites.Entities.UserImage", "ImageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SocialConnector.Entites.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

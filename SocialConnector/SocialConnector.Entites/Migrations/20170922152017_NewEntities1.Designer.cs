@@ -11,9 +11,10 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    partial class SocialConnectorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170922152017_NewEntities1")]
+    partial class NewEntities1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +51,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Catrgories");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Image", b =>
@@ -83,28 +84,6 @@ namespace SocialConnector.Entites.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Interests");
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("FromId");
-
-                    b.Property<DateTime>("SendDate");
-
-                    b.Property<string>("Text");
-
-                    b.Property<int>("ToId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FromId");
-
-                    b.HasIndex("ToId");
-
-                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Nationality", b =>
@@ -236,19 +215,6 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.AdditinalUserInfo", "User")
                         .WithMany("Interests")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.Message", b =>
-                {
-                    b.HasOne("SocialConnector.Entites.Entities.User", "FromUser")
-                        .WithMany()
-                        .HasForeignKey("FromId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SocialConnector.Entites.Entities.User", "ToUser")
-                        .WithMany()
-                        .HasForeignKey("ToId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
