@@ -13,12 +13,10 @@
             @{
                 Html.RenderPartial("Partials/ProfileMain");
             }
-            <br>
             <!-- Accordion -->
             @{ Html.RenderPartial("Partials/ProfileLeftAccordion");}
-            <br>
             <!-- Interests -->
-            <br>
+            @{Html.RenderPartial("Partials/Interests");}
             <!-- Alert Box -->
             @{Html.RenderPartial("Partials/LeftAlertBox");}
 
@@ -42,10 +40,8 @@
         <!-- Right Column -->
         <div class="w3-col m2">
             @{Html.RenderPartial("Partials/UpcomingEvents");}
-            <br>
 
             @{Html.RenderPartial("Partials/FriendsRequest");}
-            <br>
 
             <div class="w3-card-2 w3-round w3-white w3-padding-16 w3-center">
                 <p>ADS</p>

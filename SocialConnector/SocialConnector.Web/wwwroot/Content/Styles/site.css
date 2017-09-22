@@ -1707,3 +1707,7 @@ a {
 .w3-border-grey, .w3-hover-border-grey:hover, .w3-border-gray, .w3-hover-border-gray:hover {
     border-color: #bbb !important
 }
+
+.w3-margin-side-block {
+    margin-bottom: 16px;
+}
