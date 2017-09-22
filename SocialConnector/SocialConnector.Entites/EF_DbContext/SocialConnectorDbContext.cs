@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SocialConnector.Entites.Entities;
 
 namespace SocialConnector.Entites.EF_DbContext
 {
@@ -11,5 +12,9 @@ namespace SocialConnector.Entites.EF_DbContext
         {
                 
         }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Relationship> Relationships { get; set; }
     }
 }
