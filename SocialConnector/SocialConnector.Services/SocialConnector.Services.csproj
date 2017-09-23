@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocialConnector.Entites\SocialConnector.Entites.csproj" />
+    <ProjectReference Include="..\SocialConnector.Models\SocialConnector.Models.csproj" />
   </ItemGroup>
 
 </Project>

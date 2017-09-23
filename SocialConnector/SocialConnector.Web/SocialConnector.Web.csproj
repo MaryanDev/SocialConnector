@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocialConnector.Entites\SocialConnector.Entites.csproj" />
+    <ProjectReference Include="..\SocialConnector.Models\SocialConnector.Models.csproj" />
     <ProjectReference Include="..\SocialConnector.Services\SocialConnector.Services.csproj" />
   </ItemGroup>
 
@@ -18,8 +19,8 @@
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>

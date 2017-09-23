@@ -301,9 +301,9 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateOfBirth");
+                    b.Property<DateTime?>("DateOfBirth");
 
-                    b.Property<DateTime>("DateStrted");
+                    b.Property<DateTime?>("DateStarted");
 
                     b.Property<string>("Email");
 
@@ -313,7 +313,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<string>("Password");
 
-                    b.Property<int>("RoleId");
+                    b.Property<int?>("RoleId");
 
                     b.Property<string>("UserName");
 
@@ -504,8 +504,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.UserImage", b =>

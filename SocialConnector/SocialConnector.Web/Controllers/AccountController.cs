@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SocialConnector.Entites.EF_DbContext;
-using SocialConnector.Web.ViewModels.Authentication;
 using SocialConnector.Entites.Entities;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using SocialConnector.Models.Security;
 
 namespace SocialConnector.Web.Controllers
 {
@@ -35,7 +35,7 @@ namespace SocialConnector.Web.Controllers
                 {
                     Authenticate(model.LoginName); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Profile", "Home");
                 }
                 ModelState.AddModelError("", "Incorrect login or password");
             }
