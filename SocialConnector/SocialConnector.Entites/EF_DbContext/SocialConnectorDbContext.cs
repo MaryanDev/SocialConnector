@@ -24,5 +24,13 @@ namespace SocialConnector.Entites.EF_DbContext
         public DbSet<Religion> Religions { get; set; }
         public DbSet<UserImage> UserImages { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<GroupImage> GroupImages { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PostToUser> PostsToUser { get; set; }
+        public DbSet<PostsToGroup> PotsToGroup { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<UsersToGroups> UsersToGroups { get; set; }
     }
 }

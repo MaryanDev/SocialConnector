@@ -19,14 +19,17 @@ namespace SocialConnector.Entites.Entities
         public Role Role { get; set; }
         public AdditinalUserInfo UserDetails { get; set; }
 
-        //public List<Relationship> Relationships { get; set; }
-        //public List<Relationship> Relationships1 { get; set; }
+        public List<Group> GroupsInOwn { get; set; }
+        public List<UsersToGroups> Groups { get; set; }
+        public List<PostToUser> PostsToUser { get; set; }
+        public List<Post> PostsByUser { get; set; }
 
-
-        //public User()
-        //{
-        //    Relationships = new List<Relationship>();
-        //    Relationships1 = new List<Relationship>();
-        //}
+        public User()
+        {
+            GroupsInOwn = new List<Group>();
+            Groups = new List<UsersToGroups>();
+            PostsToUser = new List<PostToUser>();
+            PostsByUser = new List<Post>();
+        }
     }
 }

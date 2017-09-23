@@ -10,5 +10,6 @@ namespace SocialConnector.Entites.Entities
         public string Path { get; set; }
 
         public UserImage UserImage { get; set; }
+        public GroupImage GroupImage { get; set; }
     }
 }
