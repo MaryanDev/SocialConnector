@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SocialConnector.Services.Abstract
 {
-    public interface IAuthenticationService
+    public interface ISocialAuthenticationService
     {
         bool Login(LoginModel loginModel);
         User Register(RegisterModel registerModel);

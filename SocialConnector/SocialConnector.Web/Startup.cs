@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SocialConnector.Entites.EF_DbContext;
+using SocialConnector.Services.Abstract;
+using SocialConnector.Services.Concrete;
 
 namespace SocialConnector.Web
 {
@@ -29,11 +31,12 @@ namespace SocialConnector.Web
 
             services.AddDbContext<SocialConnectorDbContext>(options => options.UseSqlServer(conncetion));
 
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.LoginPath = new PathString("/Account/Login");
             });
-
+            services.AddTransient<ISocialAuthenticationService, AuthenticationService>();
             services.AddMvc();
         }
 
@@ -53,6 +56,7 @@ namespace SocialConnector.Web
             {
                 routes.MapRoute("default", "{controller=Home}/{action=Profile}/{id?}");
             });
+
         }
     }
 }
