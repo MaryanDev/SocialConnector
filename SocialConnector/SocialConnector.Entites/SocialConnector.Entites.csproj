@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20170925112336_FixGenders.cs" />
     <Compile Remove="Migrations\20170925112336_FixGenders.Designer.cs" />
+    <Compile Remove="Migrations\20170925130048_StartupData.cs" />
+    <Compile Remove="Migrations\20170925130048_StartupData.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

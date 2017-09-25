@@ -1725,10 +1725,13 @@ a {
     border-radius: 10px;
     color: white;
 }
-    .login-form a, .login-form a:hover, .register-form span, .register-form a {
-        color: #ff9800;
+    .login-form a, .login-form a:hover, .register-form #optDataExpander, .register-form a, .register-form a:hover {
+        color: yellow;
     }
 
-        .register-form span:hover {
+        .register-form #optDataExpander:hover {
             cursor: pointer;
         }
+    .register-form span, .login-form span {
+        color:darkorange;
+    }

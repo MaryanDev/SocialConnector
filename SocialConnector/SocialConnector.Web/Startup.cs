@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SocialConnector.Entites.EF_DbContext;
 using SocialConnector.Services.Abstract;
 using SocialConnector.Services.Concrete;
+using SocialConnector.Entites.Initializers;
 
 namespace SocialConnector.Web
 {
@@ -41,7 +42,7 @@ namespace SocialConnector.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SocialConnectorDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +58,7 @@ namespace SocialConnector.Web
                 routes.MapRoute("default", "{controller=Home}/{action=Profile}/{id?}");
             });
 
+            SocialDbTestDataSeeder.Initialize(context);
         }
     }
 }

@@ -13,12 +13,6 @@ namespace SocialConnector.Entites.EF_DbContext
                 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //modelBuilder.Entity<Interest>().HasMany(entity => entity.Users);
-            //modelBuilder.Entity<User>().HasMany(entity => entity.Interests);
-
-        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }

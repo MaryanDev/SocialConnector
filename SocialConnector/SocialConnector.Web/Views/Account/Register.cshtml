@@ -5,79 +5,126 @@
     <script src="~/Scripts/pages/register/registration.js"></script>
 }
 <div class="row">
-    <div class="col-md-push-4 col-md-4 col-sm-4 col-sm-push-4 col-xs-8 col-xs-push-2 col-lg-2 col-lg-push-5 register-form">
+    <div class="col-md-push-4 col-md-4 col-sm-4 col-sm-push-4 col-xs-8 col-xs-push-2 col-lg-4 col-lg-push-4 register-form">
         <h4 class="text-center">Registration</h4>
         <hr />
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group text-center">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
+            <div class="form-group text-center row">
+                <div class="col-md-4 col-lg-4">
+                    <label asp-for="UserName" class="control-label"></label>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group text-center">
-                <label asp-for="Gender" class="control-label">
-                </label>
-                <br />
-                <label>
-                    <input asp-for="Gender" type="radio" name="@nameof(Model.Gender)" value="@Genders.Male" title="@Genders.Male" class="input-lg radio radio-inline" />@Genders.Male
-                </label>
-                <label>
-                    <input asp-for="Gender" type="radio" name="@nameof(Model.Gender)" value="@Genders.Female" title="@Genders.Female" class="input-lg radio radio-inline" />@Genders.Female
-                </label>
+            <div class="form-group text-center row">
+                <div class="col-md-4 col-lg-4">
+                    <label asp-for="Gender" class="control-label">
+                    </label>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                    <label>
+                        <input asp-for="Gender" type="radio" name="@nameof(Model.Gender)" value="@Genders.Male" title="@Genders.Male" class="input-lg radio radio-inline" />@Genders.Male
+                    </label>
+                    <label>
+                        <input asp-for="Gender" type="radio" name="@nameof(Model.Gender)" value="@Genders.Female" title="@Genders.Female" class="input-lg radio radio-inline" />@Genders.Female
+                    </label>
+                </div>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
-            <div class="form-group text-center">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+            <div class="form-group text-center row">
+                <div class="col-md-4 col-lg-4">
+                    <label asp-for="Email" class="control-label"></label>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group text-center">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="form-group text-center row">
+                <div class="col-md-4 col-lg-4">
+                    <label asp-for="Password" class="control-label"></label>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group text-center">
-                <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            <div class="form-group text-center row">
+                <div class="col-md-4 col-lg-4">
+                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
             </div>
             <span id="optDataExpander">Show optional data</span>
             <div id="otionalData" style="display: none">
-                <div class="form-group text-center">
-                    <label asp-for="FirstName" class="control-label"></label>
-                    <input asp-for="FirstName" class="form-control" />
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                <div class="form-group text-center row">
+                    <div class="col-md-4 col-lg-4">
+                        <label asp-for="FirstName" class="control-label"></label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group text-center">
-                    <label asp-for="LastName" class="control-label"></label>
-                    <input asp-for="LastName" class="form-control" />
-                    <span asp-validation-for="LastName" class="text-danger"></span>
+                <div class="form-group text-center row">
+                    <div class="col-md-4 col-lg-4">
+                        <label asp-for="LastName" class="control-label"></label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group text-center">
-                    <label asp-for="DateOfBirth" class="control-label"></label>
-                    <input type="date" asp-for="DateOfBirth" class="form-control" />
-                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                <div class="form-group text-center row">
+                    <div class="col-md-4 col-lg-4">
+                        <label asp-for="DateOfBirth" class="control-label"></label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <input type="date" asp-for="DateOfBirth" class="form-control" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group text-center">
-                    <label asp-for="Workplace" class="control-label"></label>
-                    <input asp-for="Workplace" class="form-control" />
-                    <span asp-validation-for="Workplace" class="text-danger"></span>
+                <div class="form-group text-center row">
+                    <div class="col-md-4 col-lg-4">
+                        <label asp-for="Workplace" class="control-label"></label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <input asp-for="Workplace" class="form-control" />
+                        <span asp-validation-for="Workplace" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group text-center">
-                    <label asp-for="Nationality" class="control-label"></label>
-                    <input asp-for="Nationality" class="form-control" />
-                    <span asp-validation-for="Nationality" class="text-danger"></span>
+                <div class="form-group text-center row">
+                    <div class="col-md-4 col-lg-4">
+                        <label asp-for="Nationality" class="control-label"></label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <input asp-for="Nationality" class="form-control" />
+                        <span asp-validation-for="Nationality" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group text-center">
-                    <label asp-for="PlaceOfBirth" class="control-label"></label>
-                    <input asp-for="PlaceOfBirth" class="form-control" />
-                    <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+                <div class="form-group text-center row">
+                    <div class="col-md-4 col-lg-4">
+                        <label asp-for="PlaceOfBirth" class="control-label"></label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <input asp-for="PlaceOfBirth" class="form-control" />
+                        <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group text-center">
-                    <label asp-for="Religion" class="control-label"></label>
-                    <input asp-for="Religion" class="form-control" />
-                    <span asp-validation-for="Religion" class="text-danger"></span>
+                <div class="form-group text-center row">
+                    <div class="col-md-4 col-lg-4">
+                        <label asp-for="Religion" class="control-label"></label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <input asp-for="Religion" class="form-control" />
+                        <span asp-validation-for="Religion" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
             <div class="form-group text-center">

@@ -1,12 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using SocialConnector.Entites.EF_DbContext;
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Text;
 
-namespace SocialConnector.Entites.Migrations
+namespace SocialConnector.Entites.Initializers
 {
-    public partial class StartupData : Migration
+    public static class SocialDbTestDataSeeder
     {
-        private string[] nationalities = new string[]
+        static private string[] nationalities = new string[]
         {
             "Afghan"
           , "Albanian"
@@ -203,24 +205,47 @@ namespace SocialConnector.Entites.Migrations
           , "Zambian"
           ,"Zimbabwean"
         };
-        protected override void Up(MigrationBuilder migrationBuilder)
+
+        static private string[] religions = new string[] { "Christianity", "Islam", "Hinduism", "Buddhism", "Judaism" };
+
+        public static void Initialize(SocialConnectorDbContext context)
         {
-            migrationBuilder.InsertData("Genders", new string[] { "Id", "Title" }, new object[] { 1, "Male" });
-            migrationBuilder.InsertData("Genders", new string[] { "Id", "Title" }, new object[] { 2, "Female" });
+            context.Database.EnsureCreated();
 
-            migrationBuilder.InsertData("Roles", new string[] { "Id", "RoleTitle" }, new object[] { 1, "User" });
-            migrationBuilder.InsertData("Roles", new string[] { "Id", "RoleTitle" }, new object[] { 2, "Admin" });
-
-            migrationBuilder.InsertData("Nationalities", "Title", "1");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DeleteData("Genders", new string[] { "Id", "Title" }, new object[] { 1, "Male" });
-            migrationBuilder.DeleteData("Genders", new string[] { "Id", "Title" }, new object[] { 2, "Female" });
-
-            migrationBuilder.DeleteData("Roles", new string[] { "Id", "RoleTitle" }, new object[] { 1, "User" });
-            migrationBuilder.DeleteData("Roles", new string[] { "Id", "RoleTitle" }, new object[] { 2, "Admin" });
+            if (!context.Nationalities.Any())
+            {
+                foreach (var nationality in nationalities)
+                {
+                    context.Nationalities.Add(new Entities.Nationality { Title = nationality });
+                }
+                context.SaveChanges();
+            }
+            if (!context.Genders.Any())
+            {
+                context.Genders.AddRange(new Entities.Gender[] 
+                {
+                    new Entities.Gender { Title = "Male" },
+                    new Entities.Gender { Title = "Female" }
+                });
+                context.SaveChanges();
+            }
+            if (!context.Roles.Any())
+            {
+                context.Roles.AddRange(new Entities.Role[] 
+                {
+                    new Entities.Role { RoleTitle = "User" },
+                    new Entities.Role { RoleTitle = "Admin" }
+                });
+                context.SaveChanges();
+            }
+            if (!context.Religions.Any())
+            {
+                foreach(var religion in religions)
+                {
+                    context.Religions.Add(new Entities.Religion { Title = religion });
+                }
+                context.SaveChanges();
+            }
         }
     }
 }
