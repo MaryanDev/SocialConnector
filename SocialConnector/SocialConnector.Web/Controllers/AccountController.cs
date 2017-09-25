@@ -2,15 +2,18 @@
 using SocialConnector.Entites.Entities;
 using SocialConnector.Models.Security;
 using SocialConnector.Services.Abstract;
+using System.Linq;
 
 namespace SocialConnector.Web.Controllers
 {
     public class AccountController : Controller
     {
         private readonly ISocialAuthenticationService _authService;
-        public AccountController(ISocialAuthenticationService authService)
+        private readonly IPredefinedDataService _predefDataService;
+        public AccountController(ISocialAuthenticationService authService, IPredefinedDataService predefDataService)
         {
             _authService = authService;
+            _predefDataService = predefDataService;
         }
 
         [HttpGet]
@@ -36,7 +39,7 @@ namespace SocialConnector.Web.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            return View(PopulatePredefinedData(new RegisterModel()));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -50,13 +53,20 @@ namespace SocialConnector.Web.Controllers
 
                 ModelState.AddModelError("", "Something gone wrong, please try later");
             }
-            return View(model);
+            return View(PopulatePredefinedData(model));
         }
 
         public IActionResult Logout()
         {
             _authService.Logout();
             return RedirectToAction("Login", "Account");
+        }
+
+        private RegisterModel PopulatePredefinedData(RegisterModel rm)
+        {
+            rm.AllNationalities = _predefDataService.GetNationalities().Select(n => n.Title);
+            rm.AllReligions = _predefDataService.GetReligions().Select(r => r.Title);
+            return rm;
         }
     }
 }

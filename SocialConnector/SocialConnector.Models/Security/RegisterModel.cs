@@ -66,5 +66,8 @@ namespace SocialConnector.Models.Security
         public string Religion { get; set; }
         #endregion
 
+        public IEnumerable<string> AllNationalities { get; set; }
+        public IEnumerable<string> AllReligions { get; set; }
+
     }
 }

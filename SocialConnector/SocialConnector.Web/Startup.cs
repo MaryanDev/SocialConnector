@@ -38,6 +38,7 @@ namespace SocialConnector.Web
                 options.LoginPath = new PathString("/Account/Login");
             });
             services.AddTransient<ISocialAuthenticationService, AuthenticationService>();
+            services.AddTransient<IPredefinedDataService, PredefinedDataService>();
             services.AddMvc();
         }
 

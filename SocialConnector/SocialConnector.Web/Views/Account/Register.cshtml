@@ -104,7 +104,9 @@
                         <label asp-for="Nationality" class="control-label"></label>
                     </div>
                     <div class="col-md-8 col-lg-8">
-                        <input asp-for="Nationality" class="form-control" />
+                        <select asp-for="Nationality" asp-items="@(new SelectList(Model.AllNationalities))" class="form-control" >
+                            <option value="">Select your nationality</option>
+                        </select>
                         <span asp-validation-for="Nationality" class="text-danger"></span>
                     </div>
                 </div>
@@ -122,7 +124,9 @@
                         <label asp-for="Religion" class="control-label"></label>
                     </div>
                     <div class="col-md-8 col-lg-8">
-                        <input asp-for="Religion" class="form-control" />
+                        <select asp-for="Religion" asp-items="@(new SelectList(Model.AllReligions))" class="form-control" >
+                            <option value="">Select your religion</option>
+                        </select>
                         <span asp-validation-for="Religion" class="text-danger"></span>
                     </div>
                 </div>
