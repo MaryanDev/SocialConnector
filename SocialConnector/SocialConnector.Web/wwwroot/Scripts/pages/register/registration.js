@@ -1,6 +1,5 @@
 ﻿$(function () {
     var optionalDataSection = $("#otionalData");
-    //optionalDataSection.hide();
 
     var expander = $("#optDataExpander");
 

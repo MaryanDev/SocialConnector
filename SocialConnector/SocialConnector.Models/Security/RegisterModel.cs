@@ -13,26 +13,29 @@ namespace SocialConnector.Models.Security
         [Required]
         [MinLength(5, ErrorMessage = "User name must be at least 5 characters long")]
         [MaxLength(120, ErrorMessage = "User name cannot contain more 120 characters")]
-        [DisplayName("User Name")]
+        [DisplayName("User Name*")]
         public string UserName { get; set; }
 
         [Required]
+        [DisplayName("Gender*")]
         public Genders Gender { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [DisplayName("Email address*")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [MinLength(5, ErrorMessage = "Password maust be at least 5 characters long")]
         [MaxLength(50, ErrorMessage = "Password cannot contain more than 50 characters")]
+        [DisplayName("Password*")]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Compare(nameof(Password), ErrorMessage = "Passwords does not match")]
-        [DisplayName("Confirm Password")]
+        [DisplayName("Confirm Password*")]
         public string ConfirmPassword { get; set; }
         #endregion
 
