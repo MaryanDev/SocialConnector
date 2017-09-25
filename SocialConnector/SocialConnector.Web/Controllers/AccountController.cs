@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using SocialConnector.Entites.EF_DbContext;
+﻿using Microsoft.AspNetCore.Mvc;
 using SocialConnector.Entites.Entities;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using SocialConnector.Models.Security;
 using SocialConnector.Services.Abstract;
 
@@ -15,7 +7,7 @@ namespace SocialConnector.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private ISocialAuthenticationService _authService;
+        private readonly ISocialAuthenticationService _authService;
         public AccountController(ISocialAuthenticationService authService)
         {
             _authService = authService;
@@ -35,8 +27,8 @@ namespace SocialConnector.Web.Controllers
             {
                 if (_authService.Login(model))
                     return RedirectToAction("Profile", "Home");
-                else
-                    ModelState.AddModelError("", "Incorrect login or password");
+
+                ModelState.AddModelError("", "Incorrect login or password");
             }
             return View(model);
         }
@@ -55,8 +47,8 @@ namespace SocialConnector.Web.Controllers
                 User newUser = _authService.Register(model);
                 if (newUser != null)
                     return RedirectToAction("Profile", "Home");
-                else
-                    ModelState.AddModelError("", "Incorrect login or password");
+
+                ModelState.AddModelError("", "Something gone wrong, please try later");
             }
             return View(model);
         }

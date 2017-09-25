@@ -1712,12 +1712,23 @@ a {
     margin-bottom: 16px;
 }
 
-.account-form {
+.login-form {
     margin-top: 15.55%;
     background-color: #4d636f;
     border-radius: 10px;
     color: white;
 }
-    .account-form a, .account-form a:hover {
+
+.register-form {
+    margin-top: 5%;
+    background-color: #4d636f;
+    border-radius: 10px;
+    color: white;
+}
+    .login-form a, .login-form a:hover, .register-form span, .register-form a {
         color: #ff9800;
     }
+
+        .register-form span:hover {
+            cursor: pointer;
+        }

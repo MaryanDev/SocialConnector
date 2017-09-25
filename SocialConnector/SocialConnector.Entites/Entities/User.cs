@@ -16,7 +16,7 @@ namespace SocialConnector.Entites.Entities
         public DateTime? DateOfBirth { get; set; }
         public string Password { get; set; }
         public DateTime? DateStarted { get; set; }
-        public string WorPlace { get; set; }
+        public string WorkPlace { get; set; }
         public string PlaceOfBirth { get; set; }
         public Religion Religion { get; set; }
         public Nationality Nationality { get; set; }

@@ -1,8 +1,6 @@
 ﻿using SocialConnector.Services.Abstract;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using SocialConnector.Entites.EF_DbContext;
 using SocialConnector.Entites.Entities;
 using System.Security.Claims;
@@ -11,32 +9,25 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using SocialConnector.Models.Security;
 using SocialConnector.Services.Abstract.Base;
 using Microsoft.AspNetCore.Http;
+using SocialConnector.Models.Enums;
 
 namespace SocialConnector.Services.Concrete
 {
     public class AuthenticationService : BaseService, ISocialAuthenticationService
     {
-        private HttpContext _httpContext;
+        private readonly HttpContext _httpContext;
         public AuthenticationService(SocialConnectorDbContext context, IHttpContextAccessor accessor) : base(context)
         {
             _httpContext = accessor.HttpContext;
         }
         public bool Login(LoginModel loginModel)
         {
-            User user = context.Users.FirstOrDefault(u => u.Email == loginModel.LoginName && u.Password == loginModel.Password);
+            User user = context.Users.FirstOrDefault(u => u.Email == loginModel.LoginName && u.Password == loginModel.Password) ??
+                        context.Users.FirstOrDefault(u => u.UserName == loginModel.LoginName && u.Password == loginModel.Password);
             if (user != null)
             {
                 Authenticate(loginModel.LoginName);
                 return true;
-            }
-            else
-            {
-                user = context.Users.FirstOrDefault(u => u.UserName == loginModel.LoginName && u.Password == loginModel.Password);
-                if (user != null)
-                {
-                    Authenticate(loginModel.LoginName);
-                    return true;
-                }
             }
             return false;
         }
@@ -51,12 +42,17 @@ namespace SocialConnector.Services.Concrete
             User user = context.Users.FirstOrDefault(u => u.Email == registerModel.Email);
             if (user == null)
             {
-                // добавляем пользователя в бд
-                var newUser = new User { Email = registerModel.Email, Password = registerModel.Password, UserName = registerModel.UserName };
+                var newUser = new User
+                {
+                    Email = registerModel.Email,
+                    Password = registerModel.Password,
+                    UserName = registerModel.UserName,
+                    Role = GetUserRole(SocialConnectorRoles.User)
+                };
                 context.Users.Add(newUser);
                 context.SaveChanges();
 
-                Authenticate(registerModel.Email); // аутентификация
+                Authenticate(registerModel.Email);
                 return newUser;
             }
             return null;
@@ -70,6 +66,11 @@ namespace SocialConnector.Services.Concrete
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             _httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+
+        private Role GetUserRole(SocialConnectorRoles role)
+        {
+            return context.Roles.FirstOrDefault(r => r.RoleTitle == role.ToString());
         }
     }
 }
