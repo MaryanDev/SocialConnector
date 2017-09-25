@@ -8,13 +8,14 @@ namespace SocialConnector.Entites.Entities
     public class Interest
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
         public string Title { get; set; }
-        public int CategoryId { get; set; }
 
-        [ForeignKey(nameof(UserId))]
-        public AdditinalUserInfo User { get; set; }
-        [ForeignKey(nameof(CategoryId))]
+        public List<InterestsToUsers> Users { get; set; }
         public Category Category { get; set; }
+
+        public Interest()
+        {
+            Users = new List<InterestsToUsers>();
+        }
     }
 }

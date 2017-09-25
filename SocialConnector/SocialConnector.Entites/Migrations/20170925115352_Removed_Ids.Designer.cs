@@ -11,8 +11,8 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    [Migration("20170923091056_Nullable_Role")]
-    partial class Nullable_Role
+    [Migration("20170925115352_Removed_Ids")]
+    partial class Removed_Ids
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,15 +21,15 @@ namespace SocialConnector.Entites.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditionalUserInfo", b =>
+            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditinalUserInfo", b =>
                 {
                     b.Property<int>("UserId");
 
-                    b.Property<int>("NationalityId");
+                    b.Property<int?>("NationalityId");
 
                     b.Property<string>("PlaceOfBirth");
 
-                    b.Property<int>("ReligionId");
+                    b.Property<int?>("ReligionId");
 
                     b.Property<string>("WorPlace");
 
@@ -59,9 +59,9 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AuthorId");
+                    b.Property<int?>("AuthorId");
 
-                    b.Property<int>("PostId");
+                    b.Property<int?>("PostId");
 
                     b.Property<DateTime>("PublishDate");
 
@@ -81,17 +81,15 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AuthorId");
+                    b.Property<int?>("AuthorId");
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<DateTime>("DateStarted");
 
                     b.Property<string>("Description");
 
                     b.Property<int>("Image");
-
-                    b.Property<int>("ImageId");
 
                     b.Property<string>("Title");
 
@@ -104,6 +102,18 @@ namespace SocialConnector.Entites.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("SocialConnector.Entites.Entities.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
+                });
+
             modelBuilder.Entity("SocialConnector.Entites.Entities.Group", b =>
                 {
                     b.Property<int>("Id")
@@ -111,7 +121,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("OwnerId");
+                    b.Property<int?>("OwnerId");
 
                     b.Property<string>("Title");
 
@@ -126,7 +136,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.Property<int>("ImageId");
 
-                    b.Property<int>("GroupId");
+                    b.Property<int?>("GroupId");
 
                     b.HasKey("ImageId");
 
@@ -152,11 +162,11 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<string>("Title");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -172,19 +182,19 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("FromId");
+                    b.Property<int?>("FromUserId");
 
                     b.Property<DateTime>("SendDate");
 
                     b.Property<string>("Text");
 
-                    b.Property<int>("ToId");
+                    b.Property<int?>("ToUserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FromId");
+                    b.HasIndex("FromUserId");
 
-                    b.HasIndex("ToId");
+                    b.HasIndex("ToUserId");
 
                     b.ToTable("Messages");
                 });
@@ -206,9 +216,9 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AuthorId");
+                    b.Property<int?>("AuthorId");
 
-                    b.Property<int>("ImageId");
+                    b.Property<int?>("ImageId");
 
                     b.Property<DateTime>("PublishedDate");
 
@@ -227,7 +237,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.Property<int>("PostId");
 
-                    b.Property<int>("GroupId");
+                    b.Property<int?>("GroupId");
 
                     b.HasKey("PostId");
 
@@ -240,7 +250,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.Property<int>("PostId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("PostId");
 
@@ -256,13 +266,13 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<DateTime?>("DateOfConfirmation");
 
-                    b.Property<int>("FriendId");
+                    b.Property<int?>("FriendId");
 
                     b.Property<bool>("IsConfirmed");
 
                     b.Property<DateTime>("SendDate");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -310,6 +320,8 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<string>("FirstName");
 
+                    b.Property<int?>("GenderId");
+
                     b.Property<string>("LastName");
 
                     b.Property<string>("Password");
@@ -320,6 +332,8 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenderId");
+
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
@@ -329,7 +343,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.Property<int>("ImageId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("ImageId");
 
@@ -343,11 +357,11 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("GroupId");
+                    b.Property<int?>("GroupId");
 
                     b.Property<bool>("IsContact");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
@@ -362,13 +376,11 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Nationality", "Nationality")
                         .WithMany("Users")
-                        .HasForeignKey("NationalityId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("NationalityId");
 
                     b.HasOne("SocialConnector.Entites.Entities.Religion", "Religion")
                         .WithMany("Users")
-                        .HasForeignKey("ReligionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ReligionId");
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithOne("UserDetails")
@@ -380,42 +392,36 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("SocialConnector.Entites.Entities.Post", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PostId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Event", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("SocialConnector.Entites.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CategoryId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Group", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Owner")
                         .WithMany("GroupsInOwn")
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.GroupImage", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
                         .WithMany("GroupImages")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GroupId");
 
                     b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
                         .WithOne("GroupImage")
@@ -427,47 +433,40 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Category", "Category")
                         .WithMany("Interests")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("SocialConnector.Entites.Entities.AdditionalUserInfo", "User")
                         .WithMany("Interests")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Message", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "FromUser")
                         .WithMany()
-                        .HasForeignKey("FromId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FromUserId");
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "ToUser")
                         .WithMany()
-                        .HasForeignKey("ToId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ToUserId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Post", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Author")
                         .WithMany("PostsByUser")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
                         .WithMany()
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ImageId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.PostsToGroup", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
                         .WithMany("PostsToGroup")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GroupId");
 
                     b.HasOne("SocialConnector.Entites.Entities.Post", "Post")
                         .WithOne("PostToGroup")
@@ -484,25 +483,26 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany("PostsToUser")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Relationship", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Friend")
                         .WithMany()
-                        .HasForeignKey("FriendId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FriendId");
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.User", b =>
                 {
+                    b.HasOne("SocialConnector.Entites.Entities.Gender", "Gender")
+                        .WithMany("Users")
+                        .HasForeignKey("GenderId");
+
                     b.HasOne("SocialConnector.Entites.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId");
@@ -517,21 +517,18 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.UsersToGroups", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
                         .WithMany("Members")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GroupId");
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany("Groups")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

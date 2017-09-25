@@ -9,11 +9,11 @@ namespace SocialConnector.Entites.Entities
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public List<AdditinalUserInfo> Users { get; set; }
+        public List<User> Users { get; set; }
 
         public Religion()
         {
-            Users = new List<AdditinalUserInfo>();
+            Users = new List<User>();
         }
     }
 }

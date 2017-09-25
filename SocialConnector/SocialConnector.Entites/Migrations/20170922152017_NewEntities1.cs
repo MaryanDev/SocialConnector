@@ -11,15 +11,15 @@ namespace SocialConnector.Entites.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_AdditinalUserInfo_Nationality_NationalityId",
-                table: "AdditinalUserInfo");
+                table: "AdditionalUserInfo");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_AdditinalUserInfo_Religion_ReligionId",
-                table: "AdditinalUserInfo");
+                table: "AdditionalUserInfo");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_AdditinalUserInfo_Users_UserId",
-                table: "AdditinalUserInfo");
+                table: "AdditionalUserInfo");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Interest_Category_CategoryId",
@@ -47,7 +47,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_AdditinalUserInfo",
-                table: "AdditinalUserInfo");
+                table: "AdditionalUserInfo");
 
             migrationBuilder.RenameTable(
                 name: "Religion",
@@ -66,7 +66,7 @@ namespace SocialConnector.Entites.Migrations
                 newName: "Catrgories");
 
             migrationBuilder.RenameTable(
-                name: "AdditinalUserInfo",
+                name: "AdditionalUserInfo",
                 newName: "UserInfo");
 
             migrationBuilder.RenameIndex(
@@ -247,7 +247,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.RenameTable(
                 name: "UserInfo",
-                newName: "AdditinalUserInfo");
+                newName: "AdditionalUserInfo");
 
             migrationBuilder.RenameTable(
                 name: "Religions",
@@ -267,12 +267,12 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.RenameIndex(
                 name: "IX_UserInfo_ReligionId",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 newName: "IX_AdditinalUserInfo_ReligionId");
 
             migrationBuilder.RenameIndex(
                 name: "IX_UserInfo_NationalityId",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 newName: "IX_AdditinalUserInfo_NationalityId");
 
             migrationBuilder.RenameIndex(
@@ -287,7 +287,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_AdditinalUserInfo",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 column: "UserId");
 
             migrationBuilder.AddPrimaryKey(
@@ -312,7 +312,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AdditinalUserInfo_Nationality_NationalityId",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 column: "NationalityId",
                 principalTable: "Nationality",
                 principalColumn: "Id",
@@ -320,7 +320,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AdditinalUserInfo_Religion_ReligionId",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 column: "ReligionId",
                 principalTable: "Religion",
                 principalColumn: "Id",
@@ -328,7 +328,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AdditinalUserInfo_Users_UserId",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 column: "UserId",
                 principalTable: "Users",
                 principalColumn: "Id",
@@ -346,7 +346,7 @@ namespace SocialConnector.Entites.Migrations
                 name: "FK_Interest_AdditinalUserInfo_UserId",
                 table: "Interest",
                 column: "UserId",
-                principalTable: "AdditinalUserInfo",
+                principalTable: "AdditionalUserInfo",
                 principalColumn: "UserId",
                 onDelete: ReferentialAction.Cascade);
         }

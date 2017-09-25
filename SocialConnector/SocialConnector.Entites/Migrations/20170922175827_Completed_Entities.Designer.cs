@@ -372,7 +372,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithOne("UserDetails")
-                        .HasForeignKey("SocialConnector.Entites.Entities.AdditinalUserInfo", "UserId")
+                        .HasForeignKey("SocialConnector.Entites.Entities.AdditionalUserInfo", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -430,7 +430,7 @@ namespace SocialConnector.Entites.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SocialConnector.Entites.Entities.AdditinalUserInfo", "User")
+                    b.HasOne("SocialConnector.Entites.Entities.AdditionalUserInfo", "User")
                         .WithMany("Interests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

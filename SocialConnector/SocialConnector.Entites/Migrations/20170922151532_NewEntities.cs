@@ -49,7 +49,7 @@ namespace SocialConnector.Entites.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdditinalUserInfo",
+                name: "AdditionalUserInfo",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -103,19 +103,19 @@ namespace SocialConnector.Entites.Migrations
                     table.ForeignKey(
                         name: "FK_Interest_AdditinalUserInfo_UserId",
                         column: x => x.UserId,
-                        principalTable: "AdditinalUserInfo",
+                        principalTable: "AdditionalUserInfo",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AdditinalUserInfo_NationalityId",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 column: "NationalityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AdditinalUserInfo_ReligionId",
-                table: "AdditinalUserInfo",
+                table: "AdditionalUserInfo",
                 column: "ReligionId");
 
             migrationBuilder.CreateIndex(
@@ -138,7 +138,7 @@ namespace SocialConnector.Entites.Migrations
                 name: "Category");
 
             migrationBuilder.DropTable(
-                name: "AdditinalUserInfo");
+                name: "AdditionalUserInfo");
 
             migrationBuilder.DropTable(
                 name: "Nationality");

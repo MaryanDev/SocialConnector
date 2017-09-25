@@ -10,11 +10,10 @@ namespace SocialConnector.Entites.Entities
     {
         [Key]
         public int PostId { get; set; }
-        public int GroupId { get; set; }
 
         [ForeignKey(nameof(PostId))]
         public Post Post { get; set; }
-        [ForeignKey(nameof(GroupId))]
+        [Required]
         public Group Group { get; set; }
     }
 }

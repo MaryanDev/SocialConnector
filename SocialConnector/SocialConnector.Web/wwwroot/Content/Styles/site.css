@@ -1711,3 +1711,13 @@ a {
 .w3-margin-side-block {
     margin-bottom: 16px;
 }
+
+.account-form {
+    margin-top: 15.55%;
+    background-color: #4d636f;
+    border-radius: 10px;
+    color: white;
+}
+    .account-form a, .account-form a:hover {
+        color: #ff9800;
+    }

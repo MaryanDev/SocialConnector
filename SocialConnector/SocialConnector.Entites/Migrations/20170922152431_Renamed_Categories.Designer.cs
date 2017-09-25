@@ -21,7 +21,7 @@ namespace SocialConnector.Entites.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditinalUserInfo", b =>
+            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditionalUserInfo", b =>
                 {
                     b.Property<int>("UserId");
 
@@ -209,7 +209,7 @@ namespace SocialConnector.Entites.Migrations
                     b.ToTable("UserImages");
                 });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditinalUserInfo", b =>
+            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditionalUserInfo", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Nationality", "Nationality")
                         .WithMany("Users")
@@ -223,7 +223,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithOne("UserDetails")
-                        .HasForeignKey("SocialConnector.Entites.Entities.AdditinalUserInfo", "UserId")
+                        .HasForeignKey("SocialConnector.Entites.Entities.AdditionalUserInfo", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -234,7 +234,7 @@ namespace SocialConnector.Entites.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SocialConnector.Entites.Entities.AdditinalUserInfo", "User")
+                    b.HasOne("SocialConnector.Entites.Entities.AdditionalUserInfo", "User")
                         .WithMany("Interests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

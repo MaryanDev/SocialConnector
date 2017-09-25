@@ -11,8 +11,8 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    [Migration("20170923091056_Nullable_Role")]
-    partial class Nullable_Role
+    [Migration("20170925112336_FixGenders")]
+    partial class FixGenders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace SocialConnector.Entites.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditionalUserInfo", b =>
+            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditinalUserInfo", b =>
                 {
                     b.Property<int>("UserId");
 
@@ -358,7 +358,7 @@ namespace SocialConnector.Entites.Migrations
                     b.ToTable("UsersToGroups");
                 });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditionalUserInfo", b =>
+            modelBuilder.Entity("SocialConnector.Entites.Entities.AdditinalUserInfo", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Nationality", "Nationality")
                         .WithMany("Users")
@@ -372,7 +372,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithOne("UserDetails")
-                        .HasForeignKey("SocialConnector.Entites.Entities.AdditionalUserInfo", "UserId")
+                        .HasForeignKey("SocialConnector.Entites.Entities.AdditinalUserInfo", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -430,7 +430,7 @@ namespace SocialConnector.Entites.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SocialConnector.Entites.Entities.AdditionalUserInfo", "User")
+                    b.HasOne("SocialConnector.Entites.Entities.AdditinalUserInfo", "User")
                         .WithMany("Interests")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

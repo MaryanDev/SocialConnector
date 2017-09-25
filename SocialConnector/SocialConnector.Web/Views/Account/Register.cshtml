@@ -1,34 +1,38 @@
 ﻿@model SocialConnector.Models.Security.RegisterModel
-<h4>RegisterModel</h4>
-<hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2 col-md-push-5 account-form">
+        <h4 class="text-center">Registration</h4>
+        <hr />
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
+                <input asp-for="UserName" class="form-control"/>
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control"/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="form-control"/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <label asp-for="ConfirmPassword" class="control-label"></label>
-                <input asp-for="ConfirmPassword" class="form-control" />
+                <input asp-for="ConfirmPassword" class="form-control"/>
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group text-center">
+                <input type="submit" value="Register" class="btn btn-success"/>
             </div>
         </form>
+        <div class="text-center">
+            <p>Already have an account?<a asp-action="Login">Log in</a></p>
+        </div>
     </div>
 </div>
 @section FootScripts {

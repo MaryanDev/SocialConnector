@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace SocialConnector.Models.Security
         [Required]
         [MinLength(5, ErrorMessage = "User name must be at least 5 characters long")]
         [MaxLength(120, ErrorMessage = "User name cannot contain more 120 characters")]
+        [DisplayName("User Name")]
         public string UserName { get; set; }
 
         [Required]
@@ -25,6 +27,7 @@ namespace SocialConnector.Models.Security
         [Required]
         [DataType(DataType.Password)]
         [Compare(nameof(Password), ErrorMessage = "Passwords does not match")]
+        [DisplayName("Confirm Password")]
         public string ConfirmPassword { get; set; }
     }
 }

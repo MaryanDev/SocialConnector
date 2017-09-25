@@ -11,8 +11,8 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    [Migration("20170923091056_Nullable_Role")]
-    partial class Nullable_Role
+    [Migration("20170925112509_Genders")]
+    partial class Genders
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,6 +102,18 @@ namespace SocialConnector.Entites.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("SocialConnector.Entites.Entities.Gender", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genders");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Group", b =>
@@ -310,6 +322,8 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<string>("FirstName");
 
+                    b.Property<int>("GenderId");
+
                     b.Property<string>("LastName");
 
                     b.Property<string>("Password");
@@ -319,6 +333,8 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GenderId");
 
                     b.HasIndex("RoleId");
 
@@ -503,6 +519,11 @@ namespace SocialConnector.Entites.Migrations
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.User", b =>
                 {
+                    b.HasOne("SocialConnector.Entites.Entities.Gender", "Gender")
+                        .WithMany("Users")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SocialConnector.Entites.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId");
