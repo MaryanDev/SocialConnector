@@ -10,9 +10,7 @@
         <!-- Left Column -->
         <div class="w3-col m3">
             <!-- Profile -->
-            @{
-                Html.RenderPartial("Partials/ProfileMain");
-            }
+            @await Component.InvokeAsync("ProfileMain")
             <!-- Accordion -->
             @{ Html.RenderPartial("Partials/ProfileLeftAccordion");}
             <!-- Interests -->

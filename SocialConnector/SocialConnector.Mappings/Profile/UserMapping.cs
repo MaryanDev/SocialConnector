@@ -5,8 +5,9 @@ using System.Linq;
 using SocialConnector.Entites.EF_DbContext;
 using SocialConnector.Entites.Entities;
 using SocialConnector.Models.Security;
+using SocialConnector.Models.UserProfile;
 
-namespace SocialConnector.Mappings.Security
+namespace SocialConnector.Mappings.Profile
 {
     public static class UserMapping
     {
@@ -26,6 +27,22 @@ namespace SocialConnector.Mappings.Security
                 DateStarted = DateTime.Today,
                 Gender = context.Genders.FirstOrDefault(g => g.Title == rm.Gender.ToString())
             };
+        }
+
+        public static ProfileMainViewModel MapProfileFromDb(User user)
+        {
+            var profileVm = new ProfileMainViewModel
+            {
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Avatar = user.Avatar,
+                Hometown = user.PlaceOfBirth,
+                WorkPlace = user.WorkPlace,
+                DateOfBirth = user.DateOfBirth?.Date ?? user.DateOfBirth
+            };
+
+            return profileVm;
         }
     }
 }

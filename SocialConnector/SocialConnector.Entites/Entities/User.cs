@@ -20,6 +20,7 @@ namespace SocialConnector.Entites.Entities
         public string PlaceOfBirth { get; set; }
         public Religion Religion { get; set; }
         public Nationality Nationality { get; set; }
+        public string Avatar { get; set; }
         public List<InterestsToUsers> Interests { get; set; }
 
         [Required]

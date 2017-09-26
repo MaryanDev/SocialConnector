@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using SocialConnector.Models.Security;
 using SocialConnector.Services.Abstract.Base;
 using Microsoft.AspNetCore.Http;
-using SocialConnector.Mappings.Security;
+using SocialConnector.Mappings.Profile;
 using SocialConnector.Models.Enums;
 
 namespace SocialConnector.Services.Concrete
