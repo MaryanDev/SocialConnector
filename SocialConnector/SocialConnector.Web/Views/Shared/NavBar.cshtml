@@ -1,8 +1,15 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
+<script src="~/Scripts/libs/jquery/jquery.easy-autocomplete.js"></script>
+<script src="~/Scripts/pages/navigation/search/search.js"></script>
+
+<link href="~/Content/Styles/easy-autocomplete.css" rel="stylesheet" />
+<link href="~/Content/Styles/easy-autocomplete.themes.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var searchSettings = {
+        searchUrl: '@Url.Action("GetSiteSearchResult", "Search")'
+    };
+</script>
 
 <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
@@ -23,6 +30,14 @@
         {
             <a href="#" title="@User.Identity.Name" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
             <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" asp-controller="Account" asp-action="Logout">Logout</a>
+            <div class="w3-right w3-padding-large" >
+                <input class="input-sm" id="socialSearch" placeholder="Search" />
+            </div>
+            <span class="w3-hide-small w3-right w3-padding-large  glyphicon glyphicon-search social-search">
+
+            </span>
+
+
         }
     </div>
 </div>

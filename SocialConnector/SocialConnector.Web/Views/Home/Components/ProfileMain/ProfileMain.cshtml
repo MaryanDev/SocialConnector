@@ -8,11 +8,14 @@
         }
         <h4 class="w3-center">@displayName</h4>
         @*<p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>*@
-        <p class="w3-center"><img src="@Model.Avatar" class="w3-circle" style="height: 106px; width: 106px" alt="Avatar">
+        <p class="w3-center">
+            <img src="@Model.Avatar" class="w3-circle" style="height: 106px; width: 106px" alt="Avatar">
         </p>
 
         <hr>
-        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>@Model.WorkPlace</p>
+        @if(!string.IsNullOrEmpty(Model.WorkPlace)){
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>@Model.WorkPlace</p>
+        }
         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>@Model.Hometown</p>
         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>@Model.DateOfBirth?.ToString("D")</p>
     </div>

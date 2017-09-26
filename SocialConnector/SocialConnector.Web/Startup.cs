@@ -41,6 +41,7 @@ namespace SocialConnector.Web
             services.AddTransient<ISocialAuthenticationService, AuthenticationService>();
             services.AddTransient<IPredefinedDataService, PredefinedDataService>();
             services.AddTransient<IUserProfileService, UserProfileService>();
+            services.AddTransient<ISearchService, SearchService>();
 
             services.AddMvc();
         }
