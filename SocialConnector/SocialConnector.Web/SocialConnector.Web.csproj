@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocialConnector.Entites\SocialConnector.Entites.csproj" />
+    <ProjectReference Include="..\SocialConnector.Mappings\SocialConnector.Mappings.csproj" />
     <ProjectReference Include="..\SocialConnector.Models\SocialConnector.Models.csproj" />
     <ProjectReference Include="..\SocialConnector.Services\SocialConnector.Services.csproj" />
   </ItemGroup>

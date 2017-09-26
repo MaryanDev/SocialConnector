@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using SocialConnector.Models.Security;
 using SocialConnector.Services.Abstract.Base;
 using Microsoft.AspNetCore.Http;
+using SocialConnector.Mappings.Security;
 using SocialConnector.Models.Enums;
 
 namespace SocialConnector.Services.Concrete
@@ -43,21 +44,9 @@ namespace SocialConnector.Services.Concrete
             User user = context.Users.FirstOrDefault(u => u.Email == registerModel.Email);
             if (user == null)
             {
-                var newUser = new User
-                {
-                    Email = registerModel.Email,
-                    Password = registerModel.Password,
-                    UserName = registerModel.UserName,
-                    Role = GetUserRole(SocialConnectorRoles.User),
-                    FirstName = registerModel.FirstName,
-                    LastName = registerModel.LastName,
-                    Nationality = context.Nationalities.FirstOrDefault(n => n.Title == registerModel.Nationality),
-                    Religion = context.Religions.FirstOrDefault(r => r.Title == registerModel.Religion),
-                    PlaceOfBirth = registerModel.PlaceOfBirth,
-                    DateOfBirth = registerModel.DateOfBirth,
-                    DateStarted = DateTime.Today,
-                    Gender = context.Genders.FirstOrDefault(g => g.Title == registerModel.Gender.ToString())
-                };
+                var newUser = UserMapping.MapUserFromRegisterModel(registerModel, context);
+                newUser.Role = GetUserRole(SocialConnectorRoles.User);
+
                 context.Users.Add(newUser);
                 context.SaveChanges();
 
