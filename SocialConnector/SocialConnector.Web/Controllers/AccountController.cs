@@ -19,6 +19,10 @@ namespace SocialConnector.Web.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Profile", "Home");
+            }
             return View();
         }
 
@@ -39,6 +43,10 @@ namespace SocialConnector.Web.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Profile", "Home");
+            }
             return View(PopulatePredefinedData(new RegisterModel()));
         }
         [HttpPost]
