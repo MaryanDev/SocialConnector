@@ -9,7 +9,10 @@
         <h4 class="w3-center">@displayName</h4>
         @*<p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>*@
         <p class="w3-center">
-            <img src="@Model.Avatar" class="w3-circle" style="height: 106px; width: 106px" alt="Avatar">
+            @{
+                var avatarUrl = string.IsNullOrEmpty(Model.Avatar) ? "https://www.w3schools.com/w3images/avatar3.png" : Model.Avatar;
+            }
+            <img src="@avatarUrl" class="w3-circle" style="height: 106px; width: 106px" alt="Avatar">
         </p>
 
         <hr>
