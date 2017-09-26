@@ -14,13 +14,13 @@ namespace SocialConnector.Entites.Entities
         [Required]
         public User Owner { get; set; }
         public List<UsersToGroups> Members { get; set; }
-        public List<GroupImage> GroupImages { get; set; }
+        public List<Image> Images { get; set; }
         public List<PostsToGroup> PostsToGroup { get; set; }
 
         public Group()
         {
             Members = new List<UsersToGroups>();
-            GroupImages = new List<GroupImage>();
+            Images = new List<Image>();
             PostsToGroup = new List<PostsToGroup>();
         }
     }

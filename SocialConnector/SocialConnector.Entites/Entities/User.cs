@@ -33,6 +33,8 @@ namespace SocialConnector.Entites.Entities
         public List<PostToUser> PostsToUser { get; set; }
         public List<Post> PostsByUser { get; set; }
 
+        public List<Image> Images { get; set; }
+
 
         public User()
         {
@@ -41,6 +43,7 @@ namespace SocialConnector.Entites.Entities
             PostsToUser = new List<PostToUser>();
             PostsByUser = new List<Post>();
             Interests = new List<InterestsToUsers>();
+            Images = new List<Image>();
         }
     }
 }

@@ -22,9 +22,7 @@ namespace SocialConnector.Entites.EF_DbContext
         public DbSet<Interest> Interests { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<Religion> Religions { get; set; }
-        public DbSet<UserImage> UserImages { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<GroupImage> GroupImages { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Post> Posts { get; set; }

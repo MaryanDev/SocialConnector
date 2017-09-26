@@ -90,7 +90,7 @@ namespace SocialConnector.Entites.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GroupImages",
+                name: "Images",
                 columns: table => new
                 {
                     ImageId = table.Column<int>(type: "int", nullable: false),
@@ -238,7 +238,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_GroupImages_GroupId",
-                table: "GroupImages",
+                table: "Images",
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
@@ -286,7 +286,7 @@ namespace SocialConnector.Entites.Migrations
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "GroupImages");
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "PostsToUser");

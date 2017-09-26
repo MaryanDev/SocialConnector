@@ -26,7 +26,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.DropForeignKey(
                 name: "FK_GroupImages_Groups_GroupId",
-                table: "GroupImages");
+                table: "Images");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Groups_Users_OwnerId",
@@ -224,7 +224,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "GroupId",
-                table: "GroupImages",
+                table: "Images",
                 type: "int",
                 nullable: true,
                 oldClrType: typeof(int));
@@ -301,7 +301,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_GroupImages_Groups_GroupId",
-                table: "GroupImages",
+                table: "Images",
                 column: "GroupId",
                 principalTable: "Groups",
                 principalColumn: "Id",
@@ -456,7 +456,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.DropForeignKey(
                 name: "FK_GroupImages_Groups_GroupId",
-                table: "GroupImages");
+                table: "Images");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Groups_Users_OwnerId",
@@ -664,7 +664,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AlterColumn<int>(
                 name: "GroupId",
-                table: "GroupImages",
+                table: "Images",
                 nullable: false,
                 oldClrType: typeof(int),
                 oldType: "int",
@@ -752,7 +752,7 @@ namespace SocialConnector.Entites.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_GroupImages_Groups_GroupId",
-                table: "GroupImages",
+                table: "Images",
                 column: "GroupId",
                 principalTable: "Groups",
                 principalColumn: "Id",

@@ -8,8 +8,7 @@ namespace SocialConnector.Entites.Entities
     {
         public int Id { get; set; }
         public string Path { get; set; }
-
-        public UserImage UserImage { get; set; }
-        public GroupImage GroupImage { get; set; }
+        public User User { get; set; }
+        public Group Group { get; set; }
     }
 }

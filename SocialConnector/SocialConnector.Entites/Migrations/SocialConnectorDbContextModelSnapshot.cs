@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SocialConnector.Entites.EF_DbContext;
 using System;
 
@@ -67,7 +65,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("Image");
+                    b.Property<int?>("ImageId");
 
                     b.Property<string>("Title");
 
@@ -76,6 +74,8 @@ namespace SocialConnector.Entites.Migrations
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Events");
                 });
@@ -110,27 +110,22 @@ namespace SocialConnector.Entites.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.GroupImage", b =>
-                {
-                    b.Property<int>("ImageId");
-
-                    b.Property<int>("GroupId");
-
-                    b.HasKey("ImageId");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("GroupImages");
-                });
-
             modelBuilder.Entity("SocialConnector.Entites.Entities.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("GroupId");
+
                     b.Property<string>("Path");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Images");
                 });
@@ -343,19 +338,6 @@ namespace SocialConnector.Entites.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.UserImage", b =>
-                {
-                    b.Property<int>("ImageId");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("ImageId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserImages");
-                });
-
             modelBuilder.Entity("SocialConnector.Entites.Entities.UsersToGroups", b =>
                 {
                     b.Property<int>("Id")
@@ -400,6 +382,10 @@ namespace SocialConnector.Entites.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Group", b =>
@@ -410,17 +396,15 @@ namespace SocialConnector.Entites.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.GroupImage", b =>
+            modelBuilder.Entity("SocialConnector.Entites.Entities.Image", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
-                        .WithMany("GroupImages")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Images")
+                        .HasForeignKey("GroupId");
 
-                    b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
-                        .WithOne("GroupImage")
-                        .HasForeignKey("SocialConnector.Entites.Entities.GroupImage", "ImageId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("SocialConnector.Entites.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Interest", b =>
@@ -522,19 +506,6 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.UserImage", b =>
-                {
-                    b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
-                        .WithOne("UserImage")
-                        .HasForeignKey("SocialConnector.Entites.Entities.UserImage", "ImageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("SocialConnector.Entites.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

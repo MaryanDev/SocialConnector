@@ -15,7 +15,7 @@ namespace SocialConnector.Entites.Entities
 
         [Required]
         public User Author { get; set; }
-        public int Image { get; set; }
+        public Image Image { get; set; }
         [Required]
         public Category Category { get; set; }
     }

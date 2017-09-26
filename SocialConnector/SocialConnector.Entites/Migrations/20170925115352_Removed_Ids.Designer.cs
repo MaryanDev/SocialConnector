@@ -142,7 +142,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("GroupImages");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Image", b =>
@@ -420,7 +420,7 @@ namespace SocialConnector.Entites.Migrations
             modelBuilder.Entity("SocialConnector.Entites.Entities.GroupImage", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
-                        .WithMany("GroupImages")
+                        .WithMany("Images")
                         .HasForeignKey("GroupId");
 
                     b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
