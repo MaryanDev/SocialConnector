@@ -1,15 +1,12 @@
-﻿using SocialConnector.Entites.EF_DbContext;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Linq;
+using SocialConnector.Entites.EF_DbContext;
+using SocialConnector.Entites.Entities;
 
 namespace SocialConnector.Entites.Initializers
 {
     public static class SocialDbTestDataSeeder
     {
-        static private string[] nationalities = new string[]
-        {
+        private static string[] nationalities = {
             "Afghan"
           , "Albanian"
           , "Algerian"
@@ -206,7 +203,7 @@ namespace SocialConnector.Entites.Initializers
           ,"Zimbabwean"
         };
 
-        static private string[] religions = new string[] { "Christianity", "Islam", "Hinduism", "Buddhism", "Judaism" };
+        private static readonly string[] religions = { "Christianity", "Islam", "Hinduism", "Buddhism", "Judaism" };
 
         public static void Initialize(SocialConnectorDbContext context)
         {
@@ -216,33 +213,25 @@ namespace SocialConnector.Entites.Initializers
             {
                 foreach (var nationality in nationalities)
                 {
-                    context.Nationalities.Add(new Entities.Nationality { Title = nationality });
+                    context.Nationalities.Add(new Nationality { Title = nationality });
                 }
                 context.SaveChanges();
             }
             if (!context.Genders.Any())
             {
-                context.Genders.AddRange(new Entities.Gender[] 
-                {
-                    new Entities.Gender { Title = "Male" },
-                    new Entities.Gender { Title = "Female" }
-                });
+                context.Genders.AddRange(new Gender { Title = "Male" }, new Gender { Title = "Female" });
                 context.SaveChanges();
             }
             if (!context.Roles.Any())
             {
-                context.Roles.AddRange(new Entities.Role[] 
-                {
-                    new Entities.Role { RoleTitle = "User" },
-                    new Entities.Role { RoleTitle = "Admin" }
-                });
+                context.Roles.AddRange(new Role { RoleTitle = "User" }, new Role { RoleTitle = "Admin" });
                 context.SaveChanges();
             }
             if (!context.Religions.Any())
             {
                 foreach(var religion in religions)
                 {
-                    context.Religions.Add(new Entities.Religion { Title = religion });
+                    context.Religions.Add(new Religion { Title = religion });
                 }
                 context.SaveChanges();
             }
