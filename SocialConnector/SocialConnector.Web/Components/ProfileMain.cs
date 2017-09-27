@@ -9,14 +9,15 @@ namespace SocialConnector.Web.Components
 {
     public class ProfileMain : ViewComponent
     {
-        private IUserProfileService _userProfileService;
+        private readonly IUserProfileService _userProfileService;
         public ProfileMain(IUserProfileService userProfileService)
         {
             _userProfileService = userProfileService;
         }
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int userId)
         {
-            var profileModel = _userProfileService.GetProfileInfo(User.Identity.Name);
+            var profileModel = _userProfileService.GetProfileInfo(userId);
+
             return View("ProfileMain", profileModel);
         }
     }

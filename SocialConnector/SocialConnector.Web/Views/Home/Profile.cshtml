@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model int
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
     <!-- The Grid -->
@@ -10,7 +6,7 @@
         <!-- Left Column -->
         <div class="w3-col m3">
             <!-- Profile -->
-            @await Component.InvokeAsync("ProfileMain")
+            @await Component.InvokeAsync("ProfileMain", new { userId = Model })
             <!-- Accordion -->
             @{ Html.RenderPartial("Partials/ProfileLeftAccordion");}
             <!-- Interests -->

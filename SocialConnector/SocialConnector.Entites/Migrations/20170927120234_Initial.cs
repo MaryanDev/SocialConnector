@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SocialConnector.Entites.Migrations
 {
-    public partial class New_initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -150,6 +150,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -498,14 +499,15 @@ namespace SocialConnector.Entites.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_FromUserId",
-                table: "Messages",
-                column: "FromUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Messages_ToUserId",
                 table: "Messages",
                 column: "ToUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_FromUserId_ToUserId_SendDate",
+                table: "Messages",
+                columns: new[] { "FromUserId", "ToUserId", "SendDate" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_AuthorId",
@@ -533,9 +535,10 @@ namespace SocialConnector.Entites.Migrations
                 column: "FriendId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Relationships_UserId",
+                name: "IX_Relationships_UserId_FriendId",
                 table: "Relationships",
-                column: "UserId");
+                columns: new[] { "UserId", "FriendId" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_GenderId",

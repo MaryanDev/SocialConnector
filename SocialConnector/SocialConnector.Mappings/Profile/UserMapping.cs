@@ -31,18 +31,22 @@ namespace SocialConnector.Mappings.Profile
 
         public static ProfileMainViewModel MapProfileFromDb(User user)
         {
-            var profileVm = new ProfileMainViewModel
+            if (user != null)
             {
-                UserName = user.UserName,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Avatar = user.Avatar,
-                Hometown = user.PlaceOfBirth,
-                WorkPlace = user.WorkPlace,
-                DateOfBirth = user.DateOfBirth?.Date ?? user.DateOfBirth
-            };
-
-            return profileVm;
+                var profileVm = new ProfileMainViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Avatar = user.Avatar,
+                    Hometown = user.PlaceOfBirth,
+                    WorkPlace = user.WorkPlace,
+                    DateOfBirth = user.DateOfBirth?.Date ?? user.DateOfBirth
+                };
+                return profileVm;
+            }
+            return null;
         }
     }
 }

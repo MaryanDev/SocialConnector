@@ -15,13 +15,20 @@ namespace SocialConnector.Services.Concrete
     {
         public UserProfileService(SocialConnectorDbContext context) : base(context)
         {
-            
+
         }
 
         public ProfileMainViewModel GetProfileInfo(string identityName)
         {
             User user = context.Users.FirstOrDefault(u => u.Email == identityName) ??
                         context.Users.FirstOrDefault(u => u.UserName == identityName);
+
+            return UserMapping.MapProfileFromDb(user);
+        }
+
+        public ProfileMainViewModel GetProfileInfo(int userId)
+        {
+            User user = context.Users.FirstOrDefault(u => u.Id == userId);
 
             return UserMapping.MapProfileFromDb(user);
         }

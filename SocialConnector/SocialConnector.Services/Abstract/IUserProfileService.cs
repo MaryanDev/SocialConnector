@@ -8,5 +8,6 @@ namespace SocialConnector.Services.Abstract
     public interface IUserProfileService
     {
         ProfileMainViewModel GetProfileInfo(string identityName);
+        ProfileMainViewModel GetProfileInfo(int userId);
     }
 }
