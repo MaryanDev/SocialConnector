@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SocialConnector.Entites.Entities;
 
@@ -11,6 +12,16 @@ namespace SocialConnector.Entites.EF_DbContext
         public SocialConnectorDbContext(DbContextOptions<SocialConnectorDbContext> options) : base(options)
         {
                 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        {
+            foreach (var relationship in modelbuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+            base.OnModelCreating(modelbuilder);
         }
 
 
