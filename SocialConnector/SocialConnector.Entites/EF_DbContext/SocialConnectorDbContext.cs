@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SocialConnector.Entites.Entities;
 
@@ -24,14 +23,6 @@ namespace SocialConnector.Entites.EF_DbContext
             modelbuilder.Entity<Relationship>().HasIndex(r => new {r.UserId, r.FriendId}).IsUnique();
 
             base.OnModelCreating(modelbuilder);
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-            {
-                relationship.DeleteBehavior = DeleteBehavior.Restrict;
-            }
         }
 
 

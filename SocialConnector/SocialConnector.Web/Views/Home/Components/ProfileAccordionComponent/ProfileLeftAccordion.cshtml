@@ -57,17 +57,22 @@
         {
             <button onclick="myFunction('FriendsPanel')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i> My Friends</button>
             <div id="FriendsPanel" class="w3-hide w3-container">
-                <div class="w3-row-padding">
+                <div>
                     <br>
                     @foreach (var friend in Model.Friends)
                     {
-                        <div class="w3-half">
+                        <div class="w3-third text-center w3-margin-bottom">
                             @{
                                 var avatarUrl = string.IsNullOrEmpty(friend.Avatar)
                                     ? (friend.Gender == Genders.Male ? "https://www.w3schools.com/w3images/avatar3.png" : "https://www.w3schools.com/w3images/avatar6.png")
                                     : friend.Avatar;
                             }
-                            <img src="@avatarUrl" style="width: 50px; height: 50px;" class="w3-margin-bottom w3-circle">
+                            <a asp-controller="Home" asp-action="Profile" asp-route-id="@friend.Id">
+                                <img src="@avatarUrl" style="width: 50px; height: 50px;" class="w3-margin-bottom w3-circle">
+                                <div style="margin-top: -5px;">
+                                    <span style="font-size:8pt;">@friend.Name</span>
+                                </div>
+                            </a>
                         </div>
                     }
                 </div>
