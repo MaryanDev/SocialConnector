@@ -11,9 +11,10 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    partial class SocialConnectorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170927103553_Renamed_Friend_Id_In_Messages")]
+    partial class Renamed_Friend_Id_In_Messages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,8 +99,6 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
 
                     b.Property<string>("Description");
 

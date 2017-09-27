@@ -1741,10 +1741,9 @@ a {
 }
 .social-search:hover {
     cursor: pointer;
-} 
-input#socialSearch{
-    margin-top: -5px;
-    margin-left: 5px;
+}
+input#socialSearch {
+    width: 250px;
 }
 .easy-autocomplete {
     display: inline-block;

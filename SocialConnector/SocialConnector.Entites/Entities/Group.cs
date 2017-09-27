@@ -13,6 +13,7 @@ namespace SocialConnector.Entites.Entities
         public string Description { get; set; }
         [Required]
         public User Owner { get; set; }
+        public DateTime DateCreated { get; set; }
         public List<UsersToGroups> Members { get; set; }
         public List<Image> Images { get; set; }
         public List<PostsToGroup> PostsToGroup { get; set; }

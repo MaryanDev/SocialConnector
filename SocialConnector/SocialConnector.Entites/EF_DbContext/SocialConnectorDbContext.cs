@@ -11,7 +11,6 @@ namespace SocialConnector.Entites.EF_DbContext
     {
         public SocialConnectorDbContext(DbContextOptions<SocialConnectorDbContext> options) : base(options)
         {
-                
         }
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
@@ -20,6 +19,9 @@ namespace SocialConnector.Entites.EF_DbContext
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            modelbuilder.Entity<Message>().HasIndex(m => new {m.FromUserId, m.ToUserId, m.SendDate}).IsUnique();
+            modelbuilder.Entity<Relationship>().HasIndex(r => new {r.UserId, r.FriendId}).IsUnique();
 
             base.OnModelCreating(modelbuilder);
         }

@@ -25,7 +25,6 @@ namespace SocialConnector.Entites.Entities
 
         [Required]
         public Role Role { get; set; }
-        //public AdditionalUserInfo UserDetails { get; set; }
         [Required]
         public Gender Gender { get; set; }
 

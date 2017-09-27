@@ -11,9 +11,10 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    partial class SocialConnectorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170927102408_Unique_Indexes")]
+    partial class Unique_Indexes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,8 +99,6 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("DateCreated");
 
                     b.Property<string>("Description");
 
@@ -258,7 +257,7 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<DateTime?>("DateOfConfirmation");
 
-                    b.Property<int>("FriendId");
+                    b.Property<int>("FrienId");
 
                     b.Property<bool>("IsConfirmed");
 
@@ -268,9 +267,9 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FriendId");
+                    b.HasIndex("FrienId");
 
-                    b.HasIndex("UserId", "FriendId")
+                    b.HasIndex("UserId", "FrienId")
                         .IsUnique();
 
                     b.ToTable("Relationships");
@@ -495,7 +494,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Friend")
                         .WithMany()
-                        .HasForeignKey("FriendId")
+                        .HasForeignKey("FrienId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
