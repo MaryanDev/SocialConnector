@@ -1,4 +1,5 @@
-﻿@model SocialConnector.Models.UserProfile.ProfileAccordionViewModel
+﻿@using SocialConnector.Models.Enums
+@model SocialConnector.Models.UserProfile.ProfileAccordionViewModel
 <div class="w3-margin-side-block w3-card-2 w3-round">
     <div class="w3-white">
         @if (Model.Groups != null && Model.Groups.Any())
@@ -48,6 +49,27 @@
                         <div class="w3-half">
                             <img src="https://www.w3schools.com/w3images/fjords.jpg" style="width: 100%" class="w3-margin-bottom">
                         </div>*@
+                </div>
+            </div>
+        }
+
+        @if (Model.Friends != null && Model.Friends.Any())
+        {
+            <button onclick="myFunction('FriendsPanel')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i> My Friends</button>
+            <div id="FriendsPanel" class="w3-hide w3-container">
+                <div class="w3-row-padding">
+                    <br>
+                    @foreach (var friend in Model.Friends)
+                    {
+                        <div class="w3-half">
+                            @{
+                                var avatarUrl = string.IsNullOrEmpty(friend.Avatar)
+                                    ? (friend.Gender == Genders.Male ? "https://www.w3schools.com/w3images/avatar3.png" : "https://www.w3schools.com/w3images/avatar6.png")
+                                    : friend.Avatar;
+                            }
+                            <img src="@avatarUrl" style="width: 50px; height: 50px;" class="w3-margin-bottom w3-circle">
+                        </div>
+                    }
                 </div>
             </div>
         }

@@ -45,6 +45,15 @@ namespace SocialConnector.Services.Concrete
 
             result.Photos = context.Users.Include(u => u.Images).FirstOrDefault(u => u.Id == userId).Images;
 
+            result.Friends =
+                context.Relationships.Include(r => r.User)
+                    .Include(r => r.Friend)
+                    .ThenInclude(r => r.Gender)
+                    .Where(r => r.User.Id == userId)
+                    .Select(r => r.Friend)
+                    .Select(f => UserMapping.MapFriendViewModelFromUser(f))
+                    .ToList();
+
             //var userCategories =
             //    context.Users.Include(u => u.Interests)
             //        .ThenInclude(i => i.Interest.Category)

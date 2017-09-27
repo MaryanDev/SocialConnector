@@ -50,5 +50,18 @@ namespace SocialConnector.Mappings.Profile
             }
             return null;
         }
+
+        public static FriendViewModel MapFriendViewModelFromUser(User friend)
+        {
+            var fullName = friend.FirstName + " " + friend.LastName;
+            var name = string.IsNullOrEmpty(fullName) ? friend.UserName : fullName;
+            return new FriendViewModel
+            {
+                Id = friend.Id,
+                Avatar = friend.Avatar,
+                Name = name,
+                Gender = (Genders)friend.GenderId
+            };
+        }
     }
 }

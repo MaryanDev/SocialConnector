@@ -10,5 +10,6 @@ namespace SocialConnector.Models.UserProfile
         public IEnumerable<Group> Groups { get; set; }
         public IEnumerable<Event> Events { get; set; }
         public IEnumerable<Image> Photos { get; set; }
+        public IEnumerable<FriendViewModel> Friends { get; set; }
     }
 }
