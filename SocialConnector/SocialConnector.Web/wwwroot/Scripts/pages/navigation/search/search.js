@@ -1,6 +1,7 @@
 ﻿$(function () {
     var searchLogo = $("span.social-search");
     var searchInput = $("#socialSearch");
+    var searchPanel = $("#searchPanel");
 
     var options = {
         url: function (phrase) {
@@ -10,12 +11,10 @@
     searchInput.easyAutocomplete(options);
     searchLogo.on("click",
         function (e) {
-            if (searchInput.is(":visible")) {
-                searchInput.parent().hide("slow");
-                searchInput.hide();
+            if (searchPanel.is(":visible")) {
+                searchPanel.hide("slow");
             } else {
-                searchInput.show("slow");
-                searchInput.parent().show("slow");
+                searchPanel.show("slow");
             }
         });
 });
