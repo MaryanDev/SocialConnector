@@ -22,10 +22,12 @@ namespace SocialConnector.Entites.Entities
         public Nationality Nationality { get; set; }
         public string Avatar { get; set; }
         public List<InterestsToUsers> Interests { get; set; }
+        public int GenderId { get; set; }
 
         [Required]
         public Role Role { get; set; }
         [Required]
+        [ForeignKey(nameof(GenderId))]
         public Gender Gender { get; set; }
 
         public List<Group> GroupsInOwn { get; set; }

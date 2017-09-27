@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SocialConnector.Models.Enums;
 
 namespace SocialConnector.Models.UserProfile
 {
@@ -14,6 +15,7 @@ namespace SocialConnector.Models.UserProfile
         public string WorkPlace { get; set; }
         public string Hometown { get; set; }
         public DateTime? DateOfBirth { get; set; }
+        public Genders Gender { get; set; }
 
         public bool IsFullNameEmpty()
         {

@@ -4,8 +4,8 @@ namespace SocialConnector.Models.Enums
 {
     public enum Genders
     {
-        Male,
-        Female
+        Male = 1,
+        Female = 2
     }
 
 }

@@ -21,8 +21,6 @@ namespace SocialConnector.Web.Controllers
         }
         // GET: /<controller>/
         [Authorize]
-        [Route("/profile/{id?}")]
-        [Route("/Home/Profile/{id?}")]
         public IActionResult Profile(int? id)
         {
             if (id != null)

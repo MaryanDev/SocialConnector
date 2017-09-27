@@ -1,0 +1,16 @@
+﻿@model SocialConnector.Models.UserProfile.ProfileInterestsViewModel
+
+@if (Model.Interests != null && Model.Interests.Any())
+{
+    <div class="w3-margin-side-block w3-card-2 w3-round w3-white w3-hide-small">
+        <div class="w3-container">
+            <p>Interests</p>
+            <p>
+                @foreach (var interest in Model.Interests)
+                {
+                    <span class="w3-tag w3-small w3-theme">@interest.Title</span>
+                }
+            </p>
+        </div>
+    </div>
+}

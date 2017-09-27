@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using SocialConnector.Entites.EF_DbContext;
 using SocialConnector.Entites.Entities;
+using SocialConnector.Models.Enums;
 using SocialConnector.Models.Security;
 using SocialConnector.Models.UserProfile;
 
@@ -42,7 +43,8 @@ namespace SocialConnector.Mappings.Profile
                     Avatar = user.Avatar,
                     Hometown = user.PlaceOfBirth,
                     WorkPlace = user.WorkPlace,
-                    DateOfBirth = user.DateOfBirth?.Date ?? user.DateOfBirth
+                    DateOfBirth = user.DateOfBirth?.Date ?? user.DateOfBirth,
+                    Gender = (Genders)user.Gender.Id
                 };
                 return profileVm;
             }
