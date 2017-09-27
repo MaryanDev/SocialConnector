@@ -367,12 +367,12 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Event", b =>
@@ -380,16 +380,17 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
                         .WithMany()
-                        .HasForeignKey("ImageId");
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Group", b =>
@@ -397,36 +398,41 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.User", "Owner")
                         .WithMany("GroupsInOwn")
                         .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Image", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
                         .WithMany("Images")
-                        .HasForeignKey("GroupId");
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany("Images")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Interest", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Category", "Category")
                         .WithMany("Interests")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.InterestsToUsers", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.Interest", "Interest")
                         .WithMany("Users")
-                        .HasForeignKey("InterestId");
+                        .HasForeignKey("InterestId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany("Interests")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Message", b =>
@@ -434,12 +440,12 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.User", "FromUser")
                         .WithMany()
                         .HasForeignKey("FromUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "ToUser")
                         .WithMany()
                         .HasForeignKey("ToUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Post", b =>
@@ -447,11 +453,12 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.User", "Author")
                         .WithMany("PostsByUser")
                         .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Image", "Image")
                         .WithMany()
-                        .HasForeignKey("ImageId");
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.PostsToGroup", b =>
@@ -459,12 +466,12 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
                         .WithMany("PostsToGroup")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Post", "Post")
                         .WithOne("PostToGroup")
                         .HasForeignKey("SocialConnector.Entites.Entities.PostsToGroup", "PostId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.PostToUser", b =>
@@ -472,11 +479,12 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.Post", "Post")
                         .WithOne("PostToUser")
                         .HasForeignKey("SocialConnector.Entites.Entities.PostToUser", "PostId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany("PostsToUser")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Relationship", b =>
@@ -484,12 +492,12 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.User", "Friend")
                         .WithMany()
                         .HasForeignKey("FriendId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.User", b =>
@@ -497,20 +505,22 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.Gender", "Gender")
                         .WithMany("Users")
                         .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Nationality", "Nationality")
                         .WithMany("Users")
-                        .HasForeignKey("NationalityId");
+                        .HasForeignKey("NationalityId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Religion", "Religion")
                         .WithMany("Users")
-                        .HasForeignKey("ReligionId");
+                        .HasForeignKey("ReligionId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.UsersToGroups", b =>
@@ -518,12 +528,12 @@ namespace SocialConnector.Entites.Migrations
                     b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
                         .WithMany("Members")
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.User", "User")
                         .WithMany("Groups")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }
