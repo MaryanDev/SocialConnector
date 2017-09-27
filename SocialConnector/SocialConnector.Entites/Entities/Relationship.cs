@@ -13,10 +13,14 @@ namespace SocialConnector.Entites.Entities
         public DateTime SendDate { get; set; }
         public DateTime? DateOfConfirmation { get; set; }
         public bool IsConfirmed { get; set; }
+        public int UserId { get; set; }
+        public int FriendId { get; set; }
 
         [Required]
+        [ForeignKey(nameof(UserId))]
         public User User { get; set; }
         [Required]
+        [ForeignKey(nameof(FriendId))]
         public User Friend { get; set; }
     }
 }

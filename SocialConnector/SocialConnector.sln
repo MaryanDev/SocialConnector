@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialConnector.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialConnector.Models", "SocialConnector.Models\SocialConnector.Models.csproj", "{48CE77E9-475D-4AD5-984D-05D15D5A959B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialConnector.Mappings", "SocialConnector.Mappings\SocialConnector.Mappings.csproj", "{8FE89041-FF3C-40AA-A412-FB2CE142F058}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialConnector.Mappings", "SocialConnector.Mappings\SocialConnector.Mappings.csproj", "{8FE89041-FF3C-40AA-A412-FB2CE142F058}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SocialConnector.Database", "SocialConnector.Database\SocialConnector.Database.sqlproj", "{7B905BB4-31EA-4879-9F81-661283C83C31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{8FE89041-FF3C-40AA-A412-FB2CE142F058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FE89041-FF3C-40AA-A412-FB2CE142F058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FE89041-FF3C-40AA-A412-FB2CE142F058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B905BB4-31EA-4879-9F81-661283C83C31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B905BB4-31EA-4879-9F81-661283C83C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B905BB4-31EA-4879-9F81-661283C83C31}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7B905BB4-31EA-4879-9F81-661283C83C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B905BB4-31EA-4879-9F81-661283C83C31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B905BB4-31EA-4879-9F81-661283C83C31}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

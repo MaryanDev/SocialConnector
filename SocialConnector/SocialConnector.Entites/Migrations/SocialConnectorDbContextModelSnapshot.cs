@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SocialConnector.Entites.EF_DbContext;
 using System;
 
@@ -99,6 +97,8 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("DateCreated");
+
                     b.Property<string>("Description");
 
                     b.Property<int>("OwnerId");
@@ -181,9 +181,10 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FromUserId");
-
                     b.HasIndex("ToUserId");
+
+                    b.HasIndex("FromUserId", "ToUserId", "SendDate")
+                        .IsUnique();
 
                     b.ToTable("Messages");
                 });
@@ -267,7 +268,8 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasIndex("FriendId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId", "FriendId")
+                        .IsUnique();
 
                     b.ToTable("Relationships");
                 });

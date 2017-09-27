@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using SocialConnector.Entites.EF_DbContext;
 using SocialConnector.Entites.Entities;
+using SocialConnector.Models.Enums;
 using SocialConnector.Models.Security;
 using SocialConnector.Models.UserProfile;
 
@@ -31,18 +32,36 @@ namespace SocialConnector.Mappings.Profile
 
         public static ProfileMainViewModel MapProfileFromDb(User user)
         {
-            var profileVm = new ProfileMainViewModel
+            if (user != null)
             {
-                UserName = user.UserName,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Avatar = user.Avatar,
-                Hometown = user.PlaceOfBirth,
-                WorkPlace = user.WorkPlace,
-                DateOfBirth = user.DateOfBirth?.Date ?? user.DateOfBirth
-            };
+                var profileVm = new ProfileMainViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Avatar = user.Avatar,
+                    Hometown = user.PlaceOfBirth,
+                    WorkPlace = user.WorkPlace,
+                    DateOfBirth = user.DateOfBirth?.Date ?? user.DateOfBirth,
+                    Gender = (Genders)user.Gender.Id
+                };
+                return profileVm;
+            }
+            return null;
+        }
 
-            return profileVm;
+        public static FriendViewModel MapFriendViewModelFromUser(User friend)
+        {
+            var fullName = friend.FirstName + " " + friend.LastName;
+            var name = string.IsNullOrEmpty(fullName) ? friend.UserName : fullName;
+            return new FriendViewModel
+            {
+                Id = friend.Id,
+                Avatar = friend.Avatar,
+                Name = name,
+                Gender = (Genders)friend.GenderId
+            };
         }
     }
 }

@@ -11,8 +11,8 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    [Migration("20170926212631_FullInitial")]
-    partial class FullInitial
+    [Migration("20170927120234_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -100,6 +100,8 @@ namespace SocialConnector.Entites.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("DateCreated");
+
                     b.Property<string>("Description");
 
                     b.Property<int>("OwnerId");
@@ -182,9 +184,10 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FromUserId");
-
                     b.HasIndex("ToUserId");
+
+                    b.HasIndex("FromUserId", "ToUserId", "SendDate")
+                        .IsUnique();
 
                     b.ToTable("Messages");
                 });
@@ -268,7 +271,8 @@ namespace SocialConnector.Entites.Migrations
 
                     b.HasIndex("FriendId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId", "FriendId")
+                        .IsUnique();
 
                     b.ToTable("Relationships");
                 });

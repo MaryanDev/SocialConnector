@@ -1,27 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model int
 
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
-    <!-- The Grid -->
     <div class="w3-row">
-        <!-- Left Column -->
         <div class="w3-col m3">
-            <!-- Profile -->
-            @await Component.InvokeAsync("ProfileMain")
-            <!-- Accordion -->
-            @{ Html.RenderPartial("Partials/ProfileLeftAccordion");}
-            <!-- Interests -->
-            @{Html.RenderPartial("Partials/Interests");}
-            <!-- Alert Box -->
-            @{Html.RenderPartial("Partials/LeftAlertBox");}
+            @await Component.InvokeAsync("ProfileMainComponent", new { userId = Model })
 
-            <!-- End Left Column -->
+            @await Component.InvokeAsync("ProfileAccordionComponent", new { userId = Model })
+            
+            @await Component.InvokeAsync("InterestsComponent", new { userId = Model })
+
+            @{Html.RenderPartial("Partials/LeftAlertBox");}
         </div>
 
-        <!-- Middle Column -->
         <div class="w3-col m7">
 
             @{Html.RenderPartial("Partials/PostBox");}
@@ -32,10 +22,8 @@
 
             @{Html.RenderPartial("Partials/WallPost_BigImage");}
 
-            <!-- End Middle Column -->
         </div>
 
-        <!-- Right Column -->
         <div class="w3-col m2">
             @{Html.RenderPartial("Partials/UpcomingEvents");}
 

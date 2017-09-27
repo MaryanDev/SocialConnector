@@ -10,10 +10,12 @@ namespace SocialConnector.Entites.Entities
         public string Title { get; set; }
 
         public List<Interest> Interests { get; set; }
+        public List<Event> Events { get; set; }
 
         public Category()
         {
             Interests = new List<Interest>();
+            Events = new List<Event>();
         }
     }
 }

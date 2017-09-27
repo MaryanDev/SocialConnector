@@ -7,17 +7,19 @@ using SocialConnector.Services.Abstract;
 
 namespace SocialConnector.Web.Components
 {
-    public class ProfileMain : ViewComponent
+    public class InterestsComponent : ViewComponent
     {
         private IUserProfileService _userProfileService;
-        public ProfileMain(IUserProfileService userProfileService)
+
+        public InterestsComponent(IUserProfileService userProfileService)
         {
             _userProfileService = userProfileService;
         }
-        public IViewComponentResult Invoke()
+
+        public IViewComponentResult Invoke(int userId)
         {
-            var profileModel = _userProfileService.GetProfileInfo(User.Identity.Name);
-            return View("ProfileMain", profileModel);
+            var profileInterests = _userProfileService.GetProfileInterests(userId);
+            return View("Interests", profileInterests);
         }
     }
 }

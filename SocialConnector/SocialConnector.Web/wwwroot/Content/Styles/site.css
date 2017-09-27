@@ -1741,11 +1741,16 @@ a {
 }
 .social-search:hover {
     cursor: pointer;
-} 
-input#socialSearch{
-    margin-top: -5px;
-    margin-left: 5px;
+}
+input#socialSearch {
+    width: 250px;
 }
 .easy-autocomplete {
     display: inline-block;
+}
+
+#searchPanel {
+    width: 350px;
+    margin-top: 2px;
+    margin-left: -100px;
 }
