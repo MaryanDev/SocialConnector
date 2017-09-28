@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using SocialConnector.Entites.Entities;
 using SocialConnector.Models.UserProfile;
 using SocialConnector.Services.Abstract;
 
@@ -23,9 +24,10 @@ namespace SocialConnector.Web.Controllers
         [Authorize]
         public IActionResult Profile(int? id)
         {
+            ProfileMainViewModel user;
             if (id != null)
             {
-                var user = _userProfileService.GetProfileInfo(id.Value);
+                user = _userProfileService.GetProfileInfo(id.Value);
                 if (user == null)
                 {
                     return NotFound();
@@ -33,9 +35,15 @@ namespace SocialConnector.Web.Controllers
             }
             else
             {
-                id = _userProfileService.GetProfileInfo(User.Identity.Name).Id;
+                user = _userProfileService.GetProfileInfo(User.Identity.Name);
+                id = user.Id;
             }
-            return View(id.Value);
+            var profileModel = new UserProfileModel
+            {
+                Id = id.Value,
+                IsMyPage = user.UserName == User.Identity.Name
+            };
+            return View(profileModel);
         }
     }
 }
