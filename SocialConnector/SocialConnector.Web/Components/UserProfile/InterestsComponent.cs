@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SocialConnector.Services.Abstract;
+using SocialConnector.Models.UserProfile;
 
 namespace SocialConnector.Web.Components.UserProfile
 {
@@ -16,9 +17,11 @@ namespace SocialConnector.Web.Components.UserProfile
             _userProfileService = userProfileService;
         }
 
-        public IViewComponentResult Invoke(int userId)
+        public IViewComponentResult Invoke(UserProfileModel userProfile)
         {
-            var profileInterests = _userProfileService.GetProfileInterests(userId);
+            var profileInterests = _userProfileService.GetProfileInterests(userProfile.Id);
+            profileInterests.IsMyPage = userProfile.IsMyPage;
+            profileInterests.FirstName = userProfile.FirstName;
             return View("Interests", profileInterests);
         }
     }

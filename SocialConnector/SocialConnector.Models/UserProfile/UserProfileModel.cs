@@ -8,5 +8,6 @@ namespace SocialConnector.Models.UserProfile
     {
         public int Id { get; set; }
         public bool IsMyPage { get; set; }
+        public string FirstName { get; set; }
     }
 }

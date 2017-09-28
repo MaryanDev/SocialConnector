@@ -55,7 +55,7 @@
 
         @if (Model.Friends != null && Model.Friends.Any())
         {
-            <button  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i> My Friends</button>
+            <button  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i>@(Model.IsMyPage ? "My Friends" :  Model.FirstName + " friends" )</button>
             <div class="w3-container">
                 <div>
                     <br>

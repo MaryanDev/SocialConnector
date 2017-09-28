@@ -3,11 +3,11 @@
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
     <div class="w3-row">
         <div class="w3-col m3">
-            @await Component.InvokeAsync("ProfileMainComponent", new { userId = Model.Id })
+            @await Component.InvokeAsync("ProfileMainComponent", new { userProfile = Model })
 
-            @await Component.InvokeAsync("ProfileAccordionComponent", new { userId = Model.Id })
+            @await Component.InvokeAsync("ProfileAccordionComponent", new { userProfile = Model })
             
-            @await Component.InvokeAsync("InterestsComponent", new { userId = Model.Id })
+            @await Component.InvokeAsync("InterestsComponent", new { userProfile = Model })
 
             @{Html.RenderPartial("Partials/LeftAlertBox");}
         </div>

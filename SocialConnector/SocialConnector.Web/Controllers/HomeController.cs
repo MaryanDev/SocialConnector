@@ -41,7 +41,8 @@ namespace SocialConnector.Web.Controllers
             var profileModel = new UserProfileModel
             {
                 Id = id.Value,
-                IsMyPage = user.UserName == User.Identity.Name
+                IsMyPage = user.UserName == User.Identity.Name,
+                FirstName = user.FirstName
             };
             return View(profileModel);
         }

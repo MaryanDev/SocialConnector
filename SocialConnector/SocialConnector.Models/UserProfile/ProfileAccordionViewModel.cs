@@ -5,9 +5,8 @@ using SocialConnector.Entites.Entities;
 
 namespace SocialConnector.Models.UserProfile
 {
-    public class ProfileAccordionViewModel
+    public class ProfileAccordionViewModel : UserProfileModel
     {
-        public int Id { get; set; }
         public IEnumerable<Group> Groups { get; set; }
         public IEnumerable<Event> Events { get; set; }
         public IEnumerable<Image> Photos { get; set; }
