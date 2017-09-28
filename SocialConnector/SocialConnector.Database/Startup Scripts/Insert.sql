@@ -1,4 +1,4 @@
-﻿use SocializerDb
+﻿use SocialDb
 go
 
 set identity_insert Categories on
