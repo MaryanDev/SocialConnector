@@ -62,7 +62,9 @@ namespace SocialConnector.Services.Concrete
                     .Select(f => UserMapping.MapFriendViewModelFromUser(f))
                     .ToList();
             friends1.AddRange(friends2);
-            result.Friends = friends1;
+            result.Friends = friends1.Take(9);
+
+            result.Id = userId;
 
             //var userCategories =
             //    context.Users.Include(u => u.Interests)

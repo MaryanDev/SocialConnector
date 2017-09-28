@@ -5,7 +5,7 @@ using SocialConnector.Entites.Entities;
 
 namespace SocialConnector.Models.UserProfile
 {
-    public class ProfileAccordionViewModel
+    public class ProfileAccordionViewModel : UserProfileModel
     {
         public IEnumerable<Group> Groups { get; set; }
         public IEnumerable<Event> Events { get; set; }

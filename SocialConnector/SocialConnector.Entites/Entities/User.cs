@@ -32,8 +32,8 @@ namespace SocialConnector.Entites.Entities
 
         public List<Group> GroupsInOwn { get; set; }
         public List<UsersToGroups> Groups { get; set; }
-        public List<PostToUser> PostsToUser { get; set; }
-        public List<Post> PostsByUser { get; set; }
+        //public List<Post> PostsToUser { get; set; }
+        //public List<Post> PostsByUser { get; set; }
 
         public List<Image> Images { get; set; }
 
@@ -42,8 +42,8 @@ namespace SocialConnector.Entites.Entities
         {
             GroupsInOwn = new List<Group>();
             Groups = new List<UsersToGroups>();
-            PostsToUser = new List<PostToUser>();
-            PostsByUser = new List<Post>();
+            //PostsToUser = new List<Post>();
+            //PostsByUser = new List<Post>();
             Interests = new List<InterestsToUsers>();
             Images = new List<Image>();
         }
