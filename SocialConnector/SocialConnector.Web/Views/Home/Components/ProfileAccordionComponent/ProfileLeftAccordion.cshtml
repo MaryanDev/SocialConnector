@@ -55,8 +55,8 @@
 
         @if (Model.Friends != null && Model.Friends.Any())
         {
-            <button onclick="myFunction('FriendsPanel')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i> My Friends</button>
-            <div id="FriendsPanel" class="w3-hide w3-container">
+            <button  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-user fa-fw w3-margin-right"></i> My Friends</button>
+            <div class="w3-container">
                 <div>
                     <br>
                     @foreach (var friend in Model.Friends)

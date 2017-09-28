@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SocialConnector.Services.Abstract;
 
-namespace SocialConnector.Web.Components
+namespace SocialConnector.Web.Components.UserProfile
 {
     public class InterestsComponent : ViewComponent
     {
-        private IUserProfileService _userProfileService;
+        protected IUserProfileService _userProfileService;
 
         public InterestsComponent(IUserProfileService userProfileService)
         {
