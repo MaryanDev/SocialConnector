@@ -14,8 +14,11 @@ namespace SocialConnector.Entites.Entities
 
         [Required]
         public User Author { get; set; }
-        public PostToUser PostToUser { get; set; }
-        public PostsToGroup PostToGroup { get; set; }
+        //public PostToUser PostToUser { get; set; }
+        //public PostsToGroup PostToGroup { get; set; }
+
+        public User ToUser { get; set; }
+        public Group ToGroup { get; set; }
         public Image Image { get; set; }
 
         public List<Comment> Comments { get; set; }

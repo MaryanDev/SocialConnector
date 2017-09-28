@@ -11,9 +11,10 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    partial class SocialConnectorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170928141816_Simlified_Posts")]
+    partial class Simlified_Posts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

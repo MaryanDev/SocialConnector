@@ -16,13 +16,13 @@ namespace SocialConnector.Entites.Entities
         public DateTime DateCreated { get; set; }
         public List<UsersToGroups> Members { get; set; }
         public List<Image> Images { get; set; }
-        public List<PostsToGroup> PostsToGroup { get; set; }
+        public List<Post> Posts { get; set; }
 
         public Group()
         {
             Members = new List<UsersToGroups>();
             Images = new List<Image>();
-            PostsToGroup = new List<PostsToGroup>();
+            Posts = new List<Post>();
         }
     }
 }
