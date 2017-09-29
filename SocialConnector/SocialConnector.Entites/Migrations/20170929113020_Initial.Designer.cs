@@ -11,7 +11,7 @@ using System;
 namespace SocialConnector.Entites.Migrations
 {
     [DbContext(typeof(SocialConnectorDbContext))]
-    [Migration("20170927120234_Initial")]
+    [Migration("20170929113020_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -217,39 +217,21 @@ namespace SocialConnector.Entites.Migrations
 
                     b.Property<string>("Text");
 
+                    b.Property<int?>("ToGroupId");
+
+                    b.Property<int?>("ToUserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("ImageId");
 
+                    b.HasIndex("ToGroupId");
+
+                    b.HasIndex("ToUserId");
+
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.PostsToGroup", b =>
-                {
-                    b.Property<int>("PostId");
-
-                    b.Property<int>("GroupId");
-
-                    b.HasKey("PostId");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("PotsToGroup");
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.PostToUser", b =>
-                {
-                    b.Property<int>("PostId");
-
-                    b.Property<int?>("UserId");
-
-                    b.HasKey("PostId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("PostsToUser");
                 });
 
             modelBuilder.Entity("SocialConnector.Entites.Entities.Relationship", b =>
@@ -388,7 +370,7 @@ namespace SocialConnector.Entites.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SocialConnector.Entites.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -456,7 +438,7 @@ namespace SocialConnector.Entites.Migrations
             modelBuilder.Entity("SocialConnector.Entites.Entities.Post", b =>
                 {
                     b.HasOne("SocialConnector.Entites.Entities.User", "Author")
-                        .WithMany("PostsByUser")
+                        .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -464,31 +446,15 @@ namespace SocialConnector.Entites.Migrations
                         .WithMany()
                         .HasForeignKey("ImageId")
                         .OnDelete(DeleteBehavior.Restrict);
-                });
 
-            modelBuilder.Entity("SocialConnector.Entites.Entities.PostsToGroup", b =>
-                {
-                    b.HasOne("SocialConnector.Entites.Entities.Group", "Group")
-                        .WithMany("PostsToGroup")
-                        .HasForeignKey("GroupId")
+                    b.HasOne("SocialConnector.Entites.Entities.Group", "ToGroup")
+                        .WithMany("Posts")
+                        .HasForeignKey("ToGroupId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("SocialConnector.Entites.Entities.Post", "Post")
-                        .WithOne("PostToGroup")
-                        .HasForeignKey("SocialConnector.Entites.Entities.PostsToGroup", "PostId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("SocialConnector.Entites.Entities.PostToUser", b =>
-                {
-                    b.HasOne("SocialConnector.Entites.Entities.Post", "Post")
-                        .WithOne("PostToUser")
-                        .HasForeignKey("SocialConnector.Entites.Entities.PostToUser", "PostId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("SocialConnector.Entites.Entities.User", "User")
-                        .WithMany("PostsToUser")
-                        .HasForeignKey("UserId")
+                    b.HasOne("SocialConnector.Entites.Entities.User", "ToUser")
+                        .WithMany()
+                        .HasForeignKey("ToUserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

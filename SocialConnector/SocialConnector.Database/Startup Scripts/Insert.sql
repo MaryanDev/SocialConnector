@@ -1,6 +1,225 @@
-﻿use SocialDb
+﻿use SocializerDb
 go
 
+set identity_insert Roles on
+insert into Roles (Id, RoleTitle) 
+values 
+(1, 'User'),
+(2, 'Admin')
+set identity_insert Roles off
+
+set identity_insert Genders on
+insert into Genders(Id, Title)
+values (1, 'Male'), (2, 'Female')
+set identity_insert Genders off
+
+set identity_insert Religions on
+insert into Religions(Id, Title)
+values
+(1, 'Christianity'),
+(2, 'Islam'),
+(3, 'Hinduism'),
+(4, 'Buddhism'),
+(5, 'Judaism'),
+(6, 'Atheism')
+set identity_insert Religions off
+
+insert into Nationalities(Title)
+values 
+(   'Afghan'),								 
+           ('Albanian'    					 ),
+           ('Algerian'						 ),
+           ('American'						 ),
+           ('Andorran'						 ),
+           ('Angolan'						 ),
+           ('Antiguans'						 ),
+           ('Argentinean'					 ),
+           ('Armenian'						 ),
+           ('Australian'					)	 ,
+           ('Austrian'						 ),
+           ('Azerbaijani'					 ),
+           ('Bahamian'						 ),
+           ('Bahraini'						 ),
+           ('Bangladeshi'					 ),
+           ('Barbadian'						 ),
+           ('Barbudans'						 ),
+           ('Batswana'						 ),
+           ('Belarusian'					)	 ,
+           ('Belgian'						 ),
+           ('Belizean'						 ),
+           ('Beninese'						 ),
+           ('Bhutanese'						 ),
+           ('Bolivian'						 ),
+           ('Bosnian'						 ),
+           ('Brazilian'						 ),
+           ('British'						 ),
+           ('Bruneian'						 ),
+           ('Bulgarian'						 ),
+           ('Burkinabe'						 ),
+           ('Burmese'						 ),
+           ('Burundian'						 ),
+           ('Cambodian'						 ),
+           ('Cameroonian'					 ),
+           ('Canadian'						 ),
+           ('Cape Verdean'					 ),
+           ('Central African'				 ),
+           ('Chadian'						 ),
+           ('Chilean'						 ),
+           ('Chinese'						 ),
+           ('Colombian'						 ),
+           ('Comoran'						 ),
+           ('Congolese'						 ),
+           ('Costa Rican'					 ),
+           ('Croatian'						 ),
+           ('Cuban'							 ),
+           ('Cypriot'						 ),
+           ('Czech'							 ),
+           ('Danish'						)	 ,
+           ('Djibouti'						 ),
+           ('Dominican'						 ),
+           ('Dutch'							 ),
+           ('East Timorese'					 ),
+           ('Ecuadorean'					)	 ,
+           ('Egyptian'						 ),
+           ('Emirian'						 ),
+           ('Equatorial Guinean'			)	 ,
+           ('Eritrean'						 ),
+           ('Estonian'						 ),
+           ('Ethiopian'						 ),
+           ('Fijian'						)	 ,
+           ('Filipino'						 ),
+           ('Finnish'						 ),
+           ('French'						)	 ,
+           ('Gabonese'						 ),
+           ('Gambian'						 ),
+           ('Georgian'						 ),
+           ('German'						)	 ,
+           ('Ghanaian'						 ),
+           ('Greek'							 ),
+           ('Grenadian'						 ),
+           ('Guatemalan'					)	 ,
+           ('Guinea-Bissauan'				 ),
+           ('Guinean'						 ),
+           ('Guyanese'						 ),
+           ('Haitian'						 ),
+           ('Herzegovinian'					 ),
+           ('Honduran'						 ),
+           ('Hungarian'						 ),
+           ('I-Kiribati'					)	 ,
+           ('Icelander'						 ),
+           ('Indian'						)	 ,
+           ('Indonesian'					)	 ,
+           ('Iranian'						 ),
+           ('Iraqi'							 ),
+           ('Irish'							 ),
+           ('Israeli'						 ),
+           ('Italian'						 ),
+           ('Ivorian'						 ),
+           ('Jamaican'						 ),
+           ('Japanese'						 ),
+           ('Jordanian'						 ),
+           ('Kazakhstani'					 ),
+           ('Kenyan'						)	 ,
+           ('Kittian and Nevisian'			 ),
+           ('Kuwaiti'						 ),
+           ('Kyrgyz'						)	 ,
+           ('Laotian'						 ),
+           ('Latvian'						 ),
+           ('Lebanese'						 ),
+           ('Liberian'						 ),
+           ('Libyan'						)	 ,
+           ('Liechtensteiner'				 ),
+           ('Lithuanian'					)	 ,
+           ('Luxembourger'					 ),
+           ('Macedonian'					)	 ,
+           ('Malagasy'						 ),
+           ('Malawian'						 ),
+           ('Malaysian'						 ),
+           ('Maldivian'						 ),
+           ('Malian'						)	 ,
+           ('Maltese'						 ),
+           ('Marshallese'					 ),
+           ('Mauritanian'					 ),
+           ('Mauritian'						 ),
+           ('Mexican'						 ),
+           ('Micronesian'					 ),
+           ('Moldovan'						 ),
+           ('Monacan'						 ),
+           ('Mongolian'						 ),
+           ('Moroccan'						 ),
+           ('Mosotho'						 ),
+           ('Motswana'						 ),
+           ('Mozambican'					)	 ,
+           ('Namibian'						 ),
+           ('Nauruan'						 ),
+           ('Nepalese'						 ),
+           ('New Zealander'					 ),
+           ('Ni-Vanuatu'					)	 ,
+           ('Nicaraguan'					)	 ,
+           ('Nigerian'						 ),
+           ('Nigerien'						 ),
+           ('North Korean'					 ),
+           ('Northern Irish'				)	 ,
+           ('Norwegian'						 ),
+           ('Omani'							 ),
+           ('Pakistani'						 ),
+           ('Palauan'						 ),
+           ('Panamanian'					)	 ,
+           ('Papua New Guinean'				 ),
+           ('Paraguayan'					)	 ,
+           ('Peruvian'						 ),
+           ('Polish'						)	 ,
+           ('Portuguese'					)	 ,
+           ('Qatari'						)	 ,
+           ('Romanian'						 ),
+           ('Russian'						 ),
+           ('Rwandan'						 ),
+           ('Saint Lucian'					 ),
+           ('Salvadoran'					)	 ,
+           ('Samoan'						)	 ,
+           ('San Marinese'					 ),
+           ('Sao Tomean'					)	 ,
+           ('Saudi'							 ),
+           ('Scottish'						 ),
+           ('Senegalese'					)	 ,
+           ('Serbian'						 ),
+           ('Seychellois'					 ),
+           ('Sierra Leonean'				)	 ,
+           ('Singaporean'					 ),
+           ('Slovakian'						 ),
+           ('Slovenian'						 ),
+           ('Solomon Islander'				 ),
+           ('Somali'						)	 ,
+           ('South African'					 ),
+           ('South Korean'					 ),
+           ('Spanish'						 ),
+           ('Sri Lankan'					)	 ,
+           ('Sudanese'						 ),
+           ('Surinamer'						 ),
+           ('Swazi'							 ),
+           ('Swedish'						 ),
+           ('Swiss'							 ),
+           ('Syrian'						)	 ,
+           ('Taiwanese'						 ),
+           ('Tajik'							 ),
+           ('Tanzanian'						 ),
+           ('Thai'							 ),
+           ('Togolese'						 ),
+           ('Tongan'						)	 ,
+           ('Trinidadian or Tobagonian'		 ),
+           ('Tunisian'						 ),
+           ('Turkish'						 ),
+           ('Tuvaluan'						 ),
+           ('Ugandan'						 ),
+           ('Ukrainian'						 ),
+           ('Uruguayan'						 ),
+           ('Uzbekistani'					 ),
+           ('Venezuelan'					)	 ,
+           ('Vietnamese'					)	 ,
+           ('Welsh'							 ),
+           ('Yemenite'						 ),
+           ('Zambian'						 ),
+          ('Zimbabwean'                     	 )
 set identity_insert Categories on
 insert into Categories(Id, Title) 
 values 
@@ -902,3 +1121,23 @@ In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultric
 insert into Posts (Id, AuthorId, ImageId, PublishedDate, Text, ToGroupId, ToUserId) values (99, 7, null, '2015-09-29', 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', 18, 24);
 insert into Posts (Id, AuthorId, ImageId, PublishedDate, Text, ToGroupId, ToUserId) values (100, 19, null, '2016-07-21', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.', 9, 1);
 set identity_insert Posts off
+
+
+
+DECLARE @sql NVARCHAR(MAX);
+SET @sql = N'';
+
+SELECT @sql = @sql + N'
+  ALTER TABLE ' + QUOTENAME(s.name) + N'.'
+  + QUOTENAME(t.name) + N' DROP CONSTRAINT '
+  + QUOTENAME(c.name) + ';'
+FROM sys.objects AS c
+INNER JOIN sys.tables AS t
+ON c.parent_object_id = t.[object_id]
+INNER JOIN sys.schemas AS s 
+ON t.[schema_id] = s.[schema_id]
+WHERE c.[type] IN ('F')
+ORDER BY c.[type];
+
+PRINT @sql;
+EXEC sys.sp_executesql @sql;

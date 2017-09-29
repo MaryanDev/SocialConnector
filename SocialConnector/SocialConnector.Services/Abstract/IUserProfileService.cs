@@ -12,5 +12,6 @@ namespace SocialConnector.Services.Abstract
 
         ProfileAccordionViewModel GetProfileAccordionContent(int userId);
         ProfileInterestsViewModel GetProfileInterests(int userId);
+        WallViewModel GetPostsForUser(int userId);
     }
 }

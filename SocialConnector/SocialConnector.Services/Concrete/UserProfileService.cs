@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 using SocialConnector.Entites.EF_DbContext;
 using SocialConnector.Models.UserProfile;
@@ -86,6 +87,20 @@ namespace SocialConnector.Services.Concrete
                 .FirstOrDefault(u => u.Id == userId)
                 .Interests
                 .Select(i => i.Interest);
+
+            return result;
+        }
+
+        public WallViewModel GetPostsForUser(int userId)
+        {
+            WallViewModel result = new WallViewModel();
+             result.Posts = context.Posts.Include(p => p.Author)
+                .Include(p => p.Comments)
+                .Include(p => p.ToUser)
+                .Where(p => p.ToUser != null)
+                .Where(p => p.ToUser.Id == userId)
+                .Select(p => UserMapping.MapPostViewModelFromDb(p))
+                .ToList();
 
             return result;
         }

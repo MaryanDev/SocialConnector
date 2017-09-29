@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using SocialConnector.Entites.EF_DbContext;
 using SocialConnector.Services.Abstract;
 using SocialConnector.Services.Concrete;
-using SocialConnector.Entites.Initializers;
 
 namespace SocialConnector.Web
 {
@@ -63,8 +62,6 @@ namespace SocialConnector.Web
                 routes.MapRoute("profile", "profile/{id?}", defaults: new {controller = "Home", action = "Profile"});
                 routes.MapRoute("default", "{controller=Home}/{action=Profile}/{id?}");
             });
-
-            SocialDbTestDataSeeder.Initialize(context);
         }
     }
 }

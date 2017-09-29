@@ -16,11 +16,13 @@
 
             @{Html.RenderPartial("Partials/PostBox");}
 
-            @{Html.RenderPartial("Partials/WallPost_ImagesAndText");}
+            @*@{Html.RenderPartial("Partials/WallPost_ImagesAndText");}
 
-            @{Html.RenderPartial("Partials/WallPost_Text");}
+            @{Html.RenderPartial("Partials/WallPost_Text");}*@
 
-            @{Html.RenderPartial("Partials/WallPost_BigImage");}
+            @*@{Html.RenderPartial("Partials/WallPost_BigImage");}*@
+
+            @await Component.InvokeAsync("WallComponent", new { userProfile = Model })
 
         </div>
 

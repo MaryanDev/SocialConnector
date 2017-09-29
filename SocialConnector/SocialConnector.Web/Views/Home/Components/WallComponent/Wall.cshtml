@@ -1,0 +1,30 @@
+﻿@using SocialConnector.Models.Enums
+@model SocialConnector.Models.UserProfile.WallViewModel
+
+@foreach (var wallPost in Model.Posts)
+{
+    <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+        <br>
+        @{
+            var avatarUrl = string.IsNullOrEmpty(wallPost.Author.Avatar)
+                ? (wallPost.Author.Gender == Genders.Male ? "https://www.w3schools.com/w3images/avatar3.png" : "https://www.w3schools.com/w3images/avatar6.png")
+                : wallPost.Author.Avatar;
+        }
+        <a asp-controller="Home" asp-action="Profile" asp-route-id="@wallPost.Author.Id">
+            <img src="@avatarUrl" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width: 60px">
+        </a>
+        @{
+        }
+        <span class="w3-right w3-opacity">@wallPost.PostedDate.ToString("D")</span>
+        <h4><a asp-controller="Home" asp-action="Profile" asp-route-id="@wallPost.Author.Id">@wallPost.Author.Name</a></h4>
+        <br>
+        <hr class="w3-clear">
+        @if (!string.IsNullOrEmpty(wallPost.Image))
+        {
+            <img src="@wallPost.Image" style="width: 100%" class="w3-margin-bottom">
+        }
+        <p>@wallPost.Text</p>
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Like</button>
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> Comment</button>
+    </div>
+}

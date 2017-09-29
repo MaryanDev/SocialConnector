@@ -63,5 +63,19 @@ namespace SocialConnector.Mappings.Profile
                 Gender = (Genders)friend.GenderId
             };
         }
+
+        public static WallPostViewModel MapPostViewModelFromDb(Post post)
+        {
+            return new WallPostViewModel
+            {
+                //Id = post.ToUser.Id,
+                PostId = post.Id,
+                Image = post.Image?.Path,
+                Author = MapFriendViewModelFromUser(post.Author),
+                Text = post.Text,
+                Comments = post.Comments,
+                PostedDate = post.PublishedDate
+            };
+        }
     }
 }

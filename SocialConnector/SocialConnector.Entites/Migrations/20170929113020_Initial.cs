@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SocialConnector.Entites.Migrations
 {
-    public partial class FullInitial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -150,6 +150,7 @@ namespace SocialConnector.Entites.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -347,7 +348,9 @@ namespace SocialConnector.Entites.Migrations
                     AuthorId = table.Column<int>(type: "int", nullable: false),
                     ImageId = table.Column<int>(type: "int", nullable: true),
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ToGroupId = table.Column<int>(type: "int", nullable: true),
+                    ToUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -362,6 +365,18 @@ namespace SocialConnector.Entites.Migrations
                         name: "FK_Posts_Images_ImageId",
                         column: x => x.ImageId,
                         principalTable: "Images",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Posts_Groups_ToGroupId",
+                        column: x => x.ToGroupId,
+                        principalTable: "Groups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Posts_Users_ToUserId",
+                        column: x => x.ToUserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -388,54 +403,6 @@ namespace SocialConnector.Entites.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_Posts_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Posts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PostsToUser",
-                columns: table => new
-                {
-                    PostId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PostsToUser", x => x.PostId);
-                    table.ForeignKey(
-                        name: "FK_PostsToUser_Posts_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Posts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PostsToUser_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PotsToGroup",
-                columns: table => new
-                {
-                    PostId = table.Column<int>(type: "int", nullable: false),
-                    GroupId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PotsToGroup", x => x.PostId);
-                    table.ForeignKey(
-                        name: "FK_PotsToGroup_Groups_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "Groups",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PotsToGroup_Posts_PostId",
                         column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "Id",
@@ -498,14 +465,15 @@ namespace SocialConnector.Entites.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_FromUserId",
-                table: "Messages",
-                column: "FromUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Messages_ToUserId",
                 table: "Messages",
                 column: "ToUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_FromUserId_ToUserId_SendDate",
+                table: "Messages",
+                columns: new[] { "FromUserId", "ToUserId", "SendDate" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_AuthorId",
@@ -518,14 +486,14 @@ namespace SocialConnector.Entites.Migrations
                 column: "ImageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PostsToUser_UserId",
-                table: "PostsToUser",
-                column: "UserId");
+                name: "IX_Posts_ToGroupId",
+                table: "Posts",
+                column: "ToGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PotsToGroup_GroupId",
-                table: "PotsToGroup",
-                column: "GroupId");
+                name: "IX_Posts_ToUserId",
+                table: "Posts",
+                column: "ToUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Relationships_FriendId",
@@ -533,9 +501,10 @@ namespace SocialConnector.Entites.Migrations
                 column: "FriendId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Relationships_UserId",
+                name: "IX_Relationships_UserId_FriendId",
                 table: "Relationships",
-                column: "UserId");
+                columns: new[] { "UserId", "FriendId" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_GenderId",
@@ -583,28 +552,22 @@ namespace SocialConnector.Entites.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "PostsToUser");
-
-            migrationBuilder.DropTable(
-                name: "PotsToGroup");
-
-            migrationBuilder.DropTable(
                 name: "Relationships");
 
             migrationBuilder.DropTable(
                 name: "UsersToGroups");
 
             migrationBuilder.DropTable(
-                name: "Interests");
-
-            migrationBuilder.DropTable(
                 name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Interests");
 
             migrationBuilder.DropTable(
                 name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Groups");
