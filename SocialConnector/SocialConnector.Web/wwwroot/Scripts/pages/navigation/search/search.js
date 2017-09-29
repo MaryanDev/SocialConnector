@@ -12,9 +12,9 @@
     searchLogo.on("click",
         function (e) {
             if (searchPanel.is(":visible")) {
-                searchPanel.hide("slow");
+                searchPanel.slideUp("slow");
             } else {
-                searchPanel.show("slow");
+                searchPanel.slideDown("slow");
             }
         });
 });

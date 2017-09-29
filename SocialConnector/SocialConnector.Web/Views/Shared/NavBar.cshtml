@@ -1,16 +1,4 @@
 ﻿
-<script src="~/Scripts/libs/jquery/jquery.easy-autocomplete.js"></script>
-<script src="~/Scripts/pages/navigation/search/search.js"></script>
-
-<link href="~/Content/Styles/easy-autocomplete.css" rel="stylesheet" />
-<link href="~/Content/Styles/easy-autocomplete.themes.css" rel="stylesheet" />
-
-<script type="text/javascript">
-    var searchSettings = {
-        searchUrl: '@Url.Action("GetSiteSearchResult", "Search")'
-    };
-</script>
-
 <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
         <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
@@ -30,15 +18,9 @@
         {
             <a href="#" title="@User.Identity.Name" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
             <a class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" asp-controller="Account" asp-action="Logout">Logout</a>
-            <div class="w3-right w3-hide-small">
-                <span class="w3-hide-small  w3-padding-large  glyphicon glyphicon-search social-search">
-                </span>
-                <div class="w3-right w3-round w3-dropdown-content w3-card-4 w3-bar-block" id="searchPanel">
-                    <div class="w3-bar-item">
-                        <input class="w3-input" id="socialSearch" placeholder="Search" />
-                    </div>
-                </div>
-            </div>
+            
+            Html.RenderPartial("SearchBar");
+            
         }
     </div>
 </div>
@@ -47,5 +29,8 @@
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Home" asp-action="Profile" asp-route-id="" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+    }
 </div>

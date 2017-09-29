@@ -1,14 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model SocialConnector.Models.UserProfile.WallPostViewModel
 <div class="w3-row-padding">
     <div class="w3-col m12">
         <div class="w3-card-2 w3-round w3-white">
             <div class="w3-container w3-padding">
                 <h6 class="w3-opacity">Social Media template by w3.css</h6>
-                <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
+                @{
+                    var placeholder = Model.IsMyPage ? $"Hello, {Model.FirstName}! What are you thinking about?" : $"Share your mindes with {Model.FirstName}...";
+                }
+                <input asp-for="Text" class="w3-input" style="border: 1px solid lightgray;margin-bottom: 10px" placeholder="@placeholder"/>
                 <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
             </div>
         </div>

@@ -46,5 +46,11 @@ namespace SocialConnector.Web.Controllers
             };
             return View(profileModel);
         }
+
+        [HttpPost]
+        public IActionResult AddPost(WallPostViewModel newPost)
+        {
+            return null;
+        }
     }
 }

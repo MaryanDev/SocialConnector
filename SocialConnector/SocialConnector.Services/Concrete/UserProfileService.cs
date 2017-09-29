@@ -99,6 +99,7 @@ namespace SocialConnector.Services.Concrete
                 .Include(p => p.ToUser)
                 .Where(p => p.ToUser != null)
                 .Where(p => p.ToUser.Id == userId)
+                .OrderByDescending(p => p.PublishedDate)
                 .Select(p => UserMapping.MapPostViewModelFromDb(p))
                 .ToList();
 

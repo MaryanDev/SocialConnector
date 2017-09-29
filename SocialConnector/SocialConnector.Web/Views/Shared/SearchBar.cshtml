@@ -1,0 +1,22 @@
+﻿
+<script src="~/Scripts/libs/jquery/jquery.easy-autocomplete.js"></script>
+<script src="~/Scripts/pages/navigation/search/search.js"></script>
+
+<link href="~/Content/Styles/easy-autocomplete.css" rel="stylesheet" />
+<link href="~/Content/Styles/easy-autocomplete.themes.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var searchSettings = {
+        searchUrl: '@Url.Action("GetSiteSearchResult", "Search")'
+    };
+</script>
+
+<div class="w3-right w3-hide-small">
+    <span class="w3-hide-small  w3-padding-large  glyphicon glyphicon-search social-search">
+    </span>
+    <div class="w3-right w3-dropdown-content w3-card-4 w3-bar-block" id="searchPanel">
+        <div class="w3-bar-item">
+            <input class="w3-input" id="socialSearch" placeholder="Search" />
+        </div>
+    </div>
+</div>
