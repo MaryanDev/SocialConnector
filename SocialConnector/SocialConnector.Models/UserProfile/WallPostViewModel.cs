@@ -5,7 +5,7 @@ using SocialConnector.Entites.Entities;
 
 namespace SocialConnector.Models.UserProfile
 {
-    public class WallPostViewModel : UserProfileModel
+    public class WallPostViewModel 
     {
         public int PostId { get; set; }
         public FriendViewModel Author { get; set; }

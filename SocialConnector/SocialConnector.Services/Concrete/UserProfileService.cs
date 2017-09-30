@@ -50,7 +50,7 @@ namespace SocialConnector.Services.Concrete
                 context.Relationships.Include(r => r.User)
                     .Include(r => r.Friend)
                     .ThenInclude(r => r.Gender)
-                    .Where(r => r.User.Id == userId)
+                    .Where(r => r.User.Id == userId && r.IsConfirmed)
                     .Select(r => r.Friend)
                     .Select(f => UserMapping.MapFriendViewModelFromUser(f))
                     .ToList();
@@ -58,7 +58,7 @@ namespace SocialConnector.Services.Concrete
             var friends2 = context.Relationships.Include(r => r.User)
                     .Include(r => r.Friend)
                     .ThenInclude(r => r.Gender)
-                    .Where(r => r.Friend.Id == userId)
+                    .Where(r => r.Friend.Id == userId && r.IsConfirmed)
                     .Select(r => r.User)
                     .Select(f => UserMapping.MapFriendViewModelFromUser(f))
                     .ToList();
@@ -104,6 +104,19 @@ namespace SocialConnector.Services.Concrete
                 .ToList();
 
             return result;
+        }
+
+        public void AddNewPost(AddWallPostViewModel newPost)
+        {
+            context.Posts.Add(new Post
+            {
+                Text = newPost.Text,
+                Author = context.Users.FirstOrDefault(u => u.UserName == newPost.AuthorName),
+                ToUser = context.Users.FirstOrDefault(u => u.Id == newPost.Id),
+                PublishedDate = DateTime.Now
+            });
+
+            context.SaveChanges();
         }
     }
 }

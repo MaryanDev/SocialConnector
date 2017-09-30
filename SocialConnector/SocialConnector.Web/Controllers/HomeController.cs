@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using SocialConnector.Entites.Entities;
 using SocialConnector.Models.UserProfile;
 using SocialConnector.Services.Abstract;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -48,9 +49,25 @@ namespace SocialConnector.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPost(WallPostViewModel newPost)
+        public IActionResult AddPost(AddWallPostViewModel newPost)
         {
-            return null;
+            var isAjax = IsAjaxRequest(Request);
+            if (ModelState.IsValid)
+            {
+                newPost.AuthorName = User.Identity.Name;
+                _userProfileService.AddNewPost(newPost);
+            }
+            
+            return RedirectToAction(nameof(Profile), new { id = newPost.Id });
+        }
+        public  bool IsAjaxRequest(HttpRequest request)
+        {
+            if (request == null)
+                throw new ArgumentNullException("request");
+
+            if (request.Headers != null)
+                return request.Headers["X-Requested-With"] == "XMLHttpRequest";
+            return false;
         }
     }
 }

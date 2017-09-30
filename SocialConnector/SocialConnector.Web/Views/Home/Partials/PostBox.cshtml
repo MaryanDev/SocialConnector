@@ -1,14 +1,18 @@
-﻿@model SocialConnector.Models.UserProfile.WallPostViewModel
+﻿@model SocialConnector.Models.UserProfile.AddWallPostViewModel
 <div class="w3-row-padding">
     <div class="w3-col m12">
         <div class="w3-card-2 w3-round w3-white">
             <div class="w3-container w3-padding">
-                <h6 class="w3-opacity">Social Media template by w3.css</h6>
                 @{
                     var placeholder = Model.IsMyPage ? $"Hello, {Model.FirstName}! What are you thinking about?" : $"Share your mindes with {Model.FirstName}...";
                 }
-                <input asp-for="Text" class="w3-input" style="border: 1px solid lightgray;margin-bottom: 10px" placeholder="@placeholder"/>
-                <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+                <form method="post" asp-controller="Home" asp-action="AddPost" data-ajax="true" data-ajax-method="POST" >
+                    <input asp-for="Text" class="w3-input" style="border: 1px solid lightgray;margin-bottom: 10px" placeholder="@placeholder" />
+
+                    <input asp-for="Id" type="hidden" />
+                    <input asp-for="FirstName" type="hidden" />
+                    <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
+                </form>
             </div>
         </div>
     </div>

@@ -15,7 +15,7 @@
 
         <div class="w3-col m7">
 
-            @{Html.RenderPartial("Partials/PostBox", new WallPostViewModel { Id = Model.Id, IsMyPage = Model.IsMyPage, FirstName = Model.FirstName });}
+            @{Html.RenderPartial("Partials/PostBox", new AddWallPostViewModel { Id = Model.Id, IsMyPage = Model.IsMyPage, FirstName = Model.FirstName });}
 
             @*@{Html.RenderPartial("Partials/WallPost_ImagesAndText");}
 
