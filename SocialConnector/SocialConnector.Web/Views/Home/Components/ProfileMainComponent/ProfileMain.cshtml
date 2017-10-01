@@ -11,10 +11,10 @@
         <p class="w3-center">
             @{
                 var avatarUrl = string.IsNullOrEmpty(Model.Avatar) ?
-                    (Model.Gender == Genders.Male ? "https://www.w3schools.com/w3images/avatar3.png" : "https://www.w3schools.com/w3images/avatar6.png") 
+                    (Model.Gender == Genders.Male ? "https://www.w3schools.com/w3images/avatar3.png" : "https://www.w3schools.com/w3images/avatar6.png")
                     : Model.Avatar;
             }
-            <img src="@avatarUrl" class="w3-circle" style="height: 106px; width: 106px" alt="Avatar">
+            <img src="@avatarUrl" class="w3-circle" style="height: 106px; width: 106px" alt="Avatar" data-toggle="modal" data-target="#avatar-upload-modal">
         </p>
 
         <hr>
@@ -30,5 +30,25 @@
         {
             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>@Model.DateOfBirth.Value.ToString("D")</p>
         }
+    </div>
+</div>
+
+<script src="~/Scripts/pages/profile/upload-avatar.js"></script>
+<div id="avatar-upload-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Uploading avatar</h3>
+            </div>
+            <div class="modal-body">
+                <div id="avatar-upload">Select</div>
+                <button id="upload-avatar-btn" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-upload">Send</span></button>
+            </div>
+            <div class="modal-footer">
+                <div id="events-message" class="text-danger">
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

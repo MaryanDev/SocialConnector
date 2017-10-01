@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using SocialConnector.Models.UserProfile;
+using Microsoft.AspNetCore.Http;
 
 namespace SocialConnector.Services.Abstract
 {
@@ -15,5 +16,7 @@ namespace SocialConnector.Services.Abstract
         WallViewModel GetPostsForUser(int userId);
 
         void AddNewPost(AddWallPostViewModel newPost);
+
+        bool UpdateProfileAvatar(IFormFile avatar, string currentUserName);
     }
 }

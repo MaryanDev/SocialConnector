@@ -10,14 +10,18 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SocialConnector.Entites.Entities;
 using SocialConnector.Mappings.Profile;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace SocialConnector.Services.Concrete
 {
     public class UserProfileService : BaseService, IUserProfileService
     {
-        public UserProfileService(SocialConnectorDbContext context) : base(context)
+        private IHostingEnvironment _appEnvironment;
+        public UserProfileService(SocialConnectorDbContext context, IHostingEnvironment appEnvironment) : base(context)
         {
-
+            _appEnvironment = appEnvironment;
         }
 
         public ProfileMainViewModel GetProfileInfo(string identityName)
@@ -116,6 +120,47 @@ namespace SocialConnector.Services.Concrete
                 PublishedDate = DateTime.Now
             });
 
+            context.SaveChanges();
+        }
+
+        public bool UpdateProfileAvatar(IFormFile avatar, string currentUserName)
+        {
+            try
+            {
+                string path = $"/Content/DatabaseImages/Users/{currentUserName}/";
+                var fullPath = _appEnvironment.WebRootPath + path;
+
+                if(!Directory.Exists(fullPath))
+                {
+                    Directory.CreateDirectory(fullPath);
+                }
+
+                fullPath += avatar.FileName;
+
+                using (var fileStream = new FileStream(fullPath, FileMode.Create))
+                {
+                    avatar.CopyTo(fileStream);
+                }
+                SaveAvatarToDb(path + avatar.FileName, currentUserName);
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private void SaveAvatarToDb(string avatarPath, string userName)
+        {
+            var user = context.Users.FirstOrDefault(u => u.UserName == userName);
+            context.Images.Add(new Image
+            {
+                Path = avatarPath,
+                User = user
+            });
+            user.Avatar = avatarPath;
+            context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
         }
     }

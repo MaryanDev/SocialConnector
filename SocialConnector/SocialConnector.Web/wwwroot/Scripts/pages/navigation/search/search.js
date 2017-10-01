@@ -5,7 +5,7 @@
 
     var options = {
         url: function (phrase) {
-            return searchSettings.searchUrl + "?phrase=" + phrase;
+            return Settings.searchUrl + "?phrase=" + phrase;
         }
     }
     searchInput.easyAutocomplete(options);

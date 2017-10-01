@@ -8,6 +8,8 @@ using SocialConnector.Entites.Entities;
 using SocialConnector.Models.UserProfile;
 using SocialConnector.Services.Abstract;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.Net;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -68,6 +70,20 @@ namespace SocialConnector.Web.Controllers
             if (request.Headers != null)
                 return request.Headers["X-Requested-With"] == "XMLHttpRequest";
             return false;
+        }
+
+        [HttpPost]
+        public IActionResult UploadAvatar([FromForm]IFormFile uploadedAvatar)
+        {
+            if(uploadedAvatar != null)
+            {
+                if(_userProfileService.UpdateProfileAvatar(uploadedAvatar, User.Identity.Name))
+                {
+                    return StatusCode((int)HttpStatusCode.Created, value: new { message = "Avatar updated successfully!" });
+                    //return RedirectToAction(nameof(Profile), new { });
+                }
+            }
+            return StatusCode((int)HttpStatusCode.InternalServerError, value: new { message = "Error while uploading avatar." });
         }
     }
 }
