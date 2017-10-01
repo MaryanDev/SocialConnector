@@ -32,23 +32,4 @@
         }
     </div>
 </div>
-
-<script src="~/Scripts/pages/profile/upload-avatar.js"></script>
-<div id="avatar-upload-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Uploading avatar</h3>
-            </div>
-            <div class="modal-body">
-                <div id="avatar-upload">Select</div>
-                <button id="upload-avatar-btn" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-upload">Send</span></button>
-            </div>
-            <div class="modal-footer">
-                <div id="events-message" class="text-danger">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@{Html.RenderPartial("/Profile/UploadPhotoModal")}
