@@ -62,6 +62,6 @@ namespace SocialConnector.Web
                 routes.MapRoute("profile", "profile/{id?}", defaults: new {controller = "Home", action = "Profile"});
                 routes.MapRoute("default", "{controller=Home}/{action=Profile}/{id?}");
             });
-        }
+        }  
     }
 }
